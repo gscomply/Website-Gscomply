@@ -51,7 +51,7 @@ export default function AdminLogin() {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <img
-              src="/GS_comply__Logo.jpg"
+              src="/logo.png"
               alt="GS Comply Solutions"
               className="h-14 w-auto object-contain mx-auto mb-4"
             />

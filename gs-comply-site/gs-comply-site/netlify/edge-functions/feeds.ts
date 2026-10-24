@@ -1,6 +1,6 @@
 // Live /rss.xml and /sitemap.xml generated from Supabase on request.
 import type { Context } from 'https://edge.netlify.com';
-import { SITE_URL, SITE_NAME, CATEGORIES, allLivePosts, cleanHtml, esc, plain } from './_lib.ts';
+import { BLOG_ENABLED, SITE_URL, SITE_NAME, CATEGORIES, allLivePosts, cleanHtml, esc, plain } from './_lib.ts';
 
 export const config = { path: ['/rss.xml', '/sitemap.xml'], cache: 'manual' };
 
@@ -11,19 +11,23 @@ const CACHE = {
 
 const STATIC_PAGES: [string, string][] = [
   ['/', '1.0'], ['/about', '0.9'], ['/services', '0.9'], ['/industries', '0.8'], ['/regulations', '0.8'],
-  ['/imds-cdx', '0.8'], ['/sustainability', '0.7'], ['/insights', '0.8'], ['/contact', '0.9'],
+  ['/imds-cdx', '0.8'], ['/sustainability', '0.7'], ['/insights', '0.8'], ['/contact', '0.9'], ['/privacy-policy', '0.3'], ['/terms', '0.3'],
 ];
 
 const cdata = (s: string) => `<![CDATA[${s.replace(/\]\]>/g, ']]]]><![CDATA[>')}]]>`;
 
 export default async (req: Request, context: Context) => {
   const path = new URL(req.url).pathname;
+  // Blog off: no RSS feed, and the sitemap lists only the regular pages
+  if (!BLOG_ENABLED && path === '/rss.xml') return new Response('Not found', { status: 404 });
+  // Blog off: the sitemap generated at build time (dist/sitemap.xml) is the one to serve
+  if (!BLOG_ENABLED && path === '/sitemap.xml') return context.next();
   try {
     if (path === '/sitemap.xml') {
-      const posts = await allLivePosts(5000);
+      const posts = BLOG_ENABLED ? await allLivePosts(5000) : [];
       const used = new Set(posts.map((p) => p.category).filter(Boolean));
       const urls = [
-        ...STATIC_PAGES.map(([p, pr]) => `  <url><loc>${SITE_URL}${p === '/' ? '' : p}${p === '/' ? '/' : ''}</loc><priority>${pr}</priority></url>`),
+        ...STATIC_PAGES.filter(([p]) => BLOG_ENABLED || p !== '/insights').map(([p, pr]) => `  <url><loc>${SITE_URL}${p === '/' ? '' : p}${p === '/' ? '/' : ''}</loc><priority>${pr}</priority></url>`),
         ...CATEGORIES.filter((c) => used.has(c)).map(
           (c) => `  <url><loc>${SITE_URL}/insights?category=${encodeURIComponent(c)}</loc><priority>0.5</priority></url>`
         ),

@@ -10,7 +10,7 @@ export default function PageHero({ title, subtitle, breadcrumb, image }: PageHer
     <section className="relative pt-28 lg:pt-36 pb-16 lg:pb-24 overflow-hidden bg-gradient-to-br from-[#155a32] via-[#1A6B3C] to-[#0d3d22]">
       {image && (
         <div className="absolute inset-0 z-0">
-          <img src={image} alt="" className="w-full h-full object-cover" />
+          <img {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async" src={image} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/80 to-gray-950/50" />
         </div>
       )}

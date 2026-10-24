@@ -3,7 +3,7 @@
 // The React app still loads afterwards and takes over, exactly as before.
 import type { Context } from 'https://edge.netlify.com';
 import {
-  SITE_URL, SITE_NAME, CATEGORIES, PER_PAGE, esc, plain, fmtDate, cleanHtml, addHeadingIds,
+  SITE_URL, SITE_NAME, BLOG_ENABLED, CATEGORIES, PER_PAGE, esc, plain, fmtDate, cleanHtml, addHeadingIds,
   listPosts, getPost, injectIntoShell, chrome, articleJsonLd, type PostRow, type PageMeta,
 } from './_lib.ts';
 
@@ -70,6 +70,11 @@ export default async (req: Request, context: Context) => {
   if (!type.includes('text/html')) return response;
   const shell = await response.text();
   const passthrough = () => new Response(shell, { status: response.status, headers: response.headers });
+
+  // Blog switched off: these URLs do not exist. Real 404 status so search engines drop them.
+  if (!BLOG_ENABLED) {
+    return new Response(shell, { status: 404, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=0, must-revalidate' } });
+  }
 
   try {
     const url = new URL(req.url);

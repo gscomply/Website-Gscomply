@@ -16,6 +16,7 @@ import {
 import { IMAGES } from '@/lib/images';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
+import SEO from '@/components/SEO';
 
 const timelineSteps = [
   { num: 1, icon: UserPlus, title: 'Account Setup', desc: 'IMDS/CDX account configuration and initial system setup for your organization.' },
@@ -44,6 +45,11 @@ const capabilities = [
 export default function ImdsCdx() {
   return (
     <>
+      <SEO
+        title={"IMDS & CDX Support: MDS Creation, Submission & Rejection Resolution"}
+        description="End-to-end IMDS and CDX support for suppliers: account setup, material data sheet (MDS) creation, submission, customer approval and rejection handling."
+        path="/imds-cdx"
+      />
       <PageHero
         title="IMDS & CDX Support"
         subtitle="Complete support throughout the IMDS/CDX lifecycle — from account setup to MDS creation, submission, customer approval and rejection resolution."
@@ -81,7 +87,7 @@ export default function ImdsCdx() {
               </Link>
             </div>
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src={IMAGES.engineComponents}
                 alt="IMDS material data management"
                 className="rounded-2xl shadow-xl w-full object-cover h-[420px]"

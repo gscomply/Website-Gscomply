@@ -14,6 +14,7 @@ import {
 import { IMAGES } from '@/lib/images';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
+import SEO from '@/components/SEO';
 
 const sustainabilityServices = [
   { icon: FileBarChart, title: 'Sustainability Data Collection', desc: 'Systematic collection of sustainability data from suppliers and internal sources, structured for reporting and analysis.' },
@@ -40,6 +41,11 @@ const pillars = [
 export default function Sustainability() {
   return (
     <>
+      <SEO
+        title={"Sustainability Support: LCA, Carbon Footprint, CBAM & ESG Data"}
+        description="Support for sustainability data collection, carbon accounting, LCA, environmental reporting, ESG data and regulatory requirements such as CBAM and PPWR."
+        path="/sustainability"
+      />
       <PageHero
         title="Sustainability Support"
         subtitle="Support for sustainability data collection, carbon accounting, LCA support, environmental reporting, ESG data and regulatory sustainability requirements."
@@ -52,7 +58,7 @@ export default function Sustainability() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src={IMAGES.windTurbines3}
                 alt="Renewable energy and sustainability"
                 className="rounded-2xl shadow-xl w-full object-cover h-[400px]"

@@ -9,6 +9,7 @@ export default function NotFound() {
         title="Page Not Found"
         description="The page you are looking for does not exist."
         path="/404"
+        noindex
       />
       <section className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-[#155a32] via-[#1A6B3C] to-[#0d3d22]">
         <div

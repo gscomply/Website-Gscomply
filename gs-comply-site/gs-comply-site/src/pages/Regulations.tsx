@@ -4,6 +4,7 @@ import { IMAGES } from '@/lib/images';
 import { slugify } from '@/lib/blog';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
+import SEO from '@/components/SEO';
 
 const regulationCategories = [
   {
@@ -49,6 +50,11 @@ const regulationCategories = [
 export default function Regulations() {
   return (
     <>
+      <SEO
+        title={"Regulations & Standards We Cover: REACH, RoHS, PFAS, IMDS, SCIP"}
+        description="Understand REACH, RoHS, PFAS, SCIP, IMDS, CDX, CMRT, CBAM, PPWR and the EU Battery Regulation. We help manufacturers collect data and keep compliance documentation ready."
+        path="/regulations"
+      />
       <PageHero
         title="Regulations & Standards"
         subtitle="We help manufacturers understand applicable requirements, collect the right information and maintain the documentation needed to support customers and global market access."

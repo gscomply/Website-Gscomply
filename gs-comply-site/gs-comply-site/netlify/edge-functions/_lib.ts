@@ -4,6 +4,8 @@
 import sanitizeHtml from 'npm:sanitize-html@2.13.0';
 
 export const SITE_URL = (Deno.env.get('SITE_URL') || 'https://gscomply.com').replace(/\/+$/, '');
+// One switch for both the site build and these edge functions: VITE_BLOG_ENABLED=true
+export const BLOG_ENABLED = (Deno.env.get('VITE_BLOG_ENABLED') || Deno.env.get('BLOG_ENABLED')) === 'true';
 export const SITE_NAME = 'GS Comply Solutions';
 export const PER_PAGE = 9;
 export const CATEGORIES = [
@@ -150,7 +152,7 @@ export interface PageMeta {
 
 export function headTags(m: PageMeta): string {
   const url = `${SITE_URL}${m.path}`;
-  const img = absolute(m.image || '/og-image.svg');
+  const img = absolute(m.image || '/og-image.png');
   const t = (s: string) => `${s} data-rh="true" />`;
   const lines = [
     `<title data-rh="true">${esc(m.title)}</title>`,

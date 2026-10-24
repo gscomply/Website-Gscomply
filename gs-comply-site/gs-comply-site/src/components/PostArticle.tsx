@@ -112,7 +112,7 @@ export default function PostArticle({
               alt={post.title}
               width={1200}
               height={600}
-              fetchPriority="high"
+              {...({ fetchpriority: "high" } as Record<string, string>)}
               className="w-full h-full object-cover"
             />
           </div>

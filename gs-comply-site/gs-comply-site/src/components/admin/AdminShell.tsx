@@ -27,7 +27,7 @@ export default function AdminShell({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 min-h-14 py-2">
             <div className="flex items-center gap-3 min-w-0">
               <Link to="/admin" className="flex items-center gap-3 shrink-0">
-                <img src="/GS_comply__Logo.jpg" alt="GS Comply" className="h-7 w-auto" />
+                <img src="/logo.png" alt="GS Comply" className="h-7 w-auto" />
                 <span className="hidden sm:inline text-sm font-semibold text-gray-400">/ Blog admin</span>
               </Link>
             </div>

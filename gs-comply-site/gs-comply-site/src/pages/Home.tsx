@@ -162,7 +162,7 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden lg:flex justify-end">
-              <img
+              <img {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async"
                 src={IMAGES.engineDetail}
                 alt="Automotive engine components representing the type of products GS Comply helps manufacturers certify for compliance"
                 width={500}
@@ -173,7 +173,7 @@ export default function Home() {
           </div>
           {/* Show hero image below text on mobile */}
           <div className="lg:hidden mt-8">
-            <img
+            <img loading="lazy" decoding="async"
               src={IMAGES.engineDetail}
               alt="Automotive engine components representing the type of products GS Comply helps manufacturers certify for compliance"
               width={500}

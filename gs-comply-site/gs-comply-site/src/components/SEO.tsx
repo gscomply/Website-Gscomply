@@ -27,8 +27,22 @@ export default function SEO({
 }: SEOProps) {
   const url = `${company.domain}${path}`;
   const fullTitle = title.includes('GS Comply') ? title : `${title} | GS Comply Solutions`;
-  const img = absoluteUrl(image || '/og-image.svg');
-  const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const img = absoluteUrl(image || '/og-image.png');
+  const extra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  // Breadcrumb trail for inner pages (shown in Google results). Name = the page title before ":" or "|".
+  const crumbName = title.split('|')[0].split(':')[0].trim();
+  const breadcrumb =
+    path !== '/' && !noindex && !path.startsWith('/insights/') && crumbName
+      ? [{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${company.domain}/` },
+            { '@type': 'ListItem', position: 2, name: crumbName, item: url },
+          ],
+        }]
+      : [];
+  const ld = [...extra, ...breadcrumb];
 
   return (
     <Helmet>

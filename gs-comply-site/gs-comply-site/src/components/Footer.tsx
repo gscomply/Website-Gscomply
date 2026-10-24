@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Clock, Linkedin, ArrowRight } from 'lucide-react';
+import { openCookieSettings } from '@/lib/consent';
 import { company } from '@/data/company';
+import { BLOG_ENABLED } from '@/config/features';
 
 const footerLinks = {
   Company: [
@@ -18,7 +20,7 @@ const footerLinks = {
   Resources: [
     { label: 'Regulations & Standards', path: '/regulations' },
     { label: 'Sustainability', path: '/sustainability' },
-    { label: 'Insights', path: '/insights' },
+    ...(BLOG_ENABLED ? [{ label: 'Insights', path: '/insights' }] : []),
     { label: 'Privacy Policy', path: '/privacy-policy' },
     { label: 'Terms of Service', path: '/terms' },
   ],
@@ -32,7 +34,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center mb-5">
               <img
-                src="/GS_comply__Logo.jpg"
+                src="/logo.png"
                 alt="GS Comply Solutions logo"
                 className="h-12 w-auto object-contain"
               />
@@ -86,6 +88,11 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {company.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
+            <Link to="/privacy-policy" className="text-xs text-gray-400 hover:text-white">Privacy</Link>
+            <Link to="/terms" className="text-xs text-gray-400 hover:text-white">Terms</Link>
+            <button type="button" onClick={openCookieSettings} className="text-xs text-gray-400 hover:text-white underline underline-offset-2">
+              Cookie settings
+            </button>
             <a
               href={company.linkedinUrl}
               target="_blank"

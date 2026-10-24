@@ -23,6 +23,7 @@ import { IMAGES } from '@/lib/images';
 import { slugify } from '@/lib/blog';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
+import SEO from '@/components/SEO';
 
 const industries = [
   { name: 'Automotive', icon: Factory, desc: 'IMDS, ELV, REACH, RoHS and customer-specific requirements for OEM and tier suppliers.', image: IMAGES.heroManufacturing },
@@ -50,6 +51,11 @@ const industries = [
 export default function Industries() {
   return (
     <>
+      <SEO
+        title={"Industries We Support: Compliance for Manufacturers"}
+        description="Compliance support for automotive, aerospace, electronics, medical, batteries, machinery and 15+ other manufacturing industries: REACH, RoHS, IMDS, SCIP and more."
+        path="/industries"
+      />
       <PageHero
         title="Industries We Support"
         subtitle="Compliance support tailored to the specific regulatory and material requirements of each manufacturing industry."
@@ -81,7 +87,7 @@ export default function Industries() {
                 className="scroll-mt-28 group rounded-xl bg-white border border-gray-100 hover:shadow-lg transition-all overflow-hidden"
               >
                 <div className="relative h-40 overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={industry.image}
                     alt={industry.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

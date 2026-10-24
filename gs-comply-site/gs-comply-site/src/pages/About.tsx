@@ -157,7 +157,7 @@ export default function About() {
                 {/* TODO: Replace with real photo at the path specified in company.ts */}
                 <div className="w-24 h-24 rounded-full bg-[#1A6B3C]/10 flex items-center justify-center mb-5 overflow-hidden">
                   {member.photo !== '/team/founder.jpg' ? (
-                    <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
+                    <img loading="lazy" decoding="async" src={member.photo} alt={member.name} className="w-full h-full object-cover" />
                   ) : (
                     <Users className="w-10 h-10 text-[#1A6B3C]/40" />
                   )}

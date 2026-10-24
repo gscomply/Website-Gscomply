@@ -2,14 +2,32 @@
   command = "npm run build"
   publish = "dist"
 
-# Edge functions in netlify/edge-functions/ run automatically (see the `config` export in each file):
-#   /insights, /insights/*  -> server-rendered HTML for search engines
+# `npm run build` pre-renders every public page to real HTML (dist/about.html etc.), plus
+# sitemap.xml, 404.html (real 404 status for unknown URLs) and 200.html (empty app shell).
+#
+# Edge functions in netlify/edge-functions/ (only active when VITE_BLOG_ENABLED=true):
+#   /insights, /insights/*  -> server-rendered blog HTML
 #   /rss.xml, /sitemap.xml  -> generated live from Supabase
 
-# Single-page-app fallback (the edge functions call context.next() to receive this index.html)
+# Client-side-only routes use the empty app shell. Everything else that does not exist gets 404.html.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/insights"
+  to = "/200.html"
+  status = 200
+
+[[redirects]]
+  from = "/insights/*"
+  to = "/200.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/200.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/200.html"
   status = 200
 
 # Admin pages must never be indexed
@@ -23,3 +41,10 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

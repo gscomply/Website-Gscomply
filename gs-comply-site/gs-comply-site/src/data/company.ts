@@ -5,21 +5,51 @@
 
 export const company = {
   name: 'GS Comply Solutions',
-  domain: import.meta.env.VITE_SITE_URL ,
-  email: import.meta.env.VITE_CONTACT_EMAIL ,
+  domain: 'https://gscomply.com',
+  email: 'info@gscomply.com',
   // TODO: Replace with real city and country
-  city: 'Chennai',
-  country: 'India',
+  city: '[City]',
+  country: '[Country]',
   // TODO: Replace with real working hours and time zone coverage
-  workingHours: 'Mon to Fri, 8:00 to 18:00 CET',
-  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL ,
-  calendlyUrl: import.meta.env.VITE_CALENDLY_URL ,
-  notificationEmail: import.meta.env.VITE_CONTACT_EMAIL ,
+  workingHours: 'Mon to Fri, 8:00 to 18:00 CET (covers EU morning and US East overlap)',
+  // TODO: Replace with your real LinkedIn company page URL
+  linkedinUrl: 'https://www.linkedin.com/company/gs-comply-solutions',
+  // TODO: Replace with your real Calendly scheduling URL
+  calendlyUrl: 'https://calendly.com/gscomply/30min',
+  // TODO: Set to your verified Resend sending domain
+  notificationEmail: 'info@gscomply.com',
+};
+
+// ============================================================
+// LEGAL DETAILS used by the Privacy Policy and Terms of Service.
+// Anything still in [square brackets] shows highlighted in yellow on the
+// pages so it cannot be missed. Replace every one before going live.
+// ============================================================
+export const legal = {
+  lastUpdated: '24 October 2026',
+  version: '1.0',
+  // The company that owns the website and decides how personal data is used (the GDPR "controller")
+  legalName: '[Registered legal name, e.g. GS Comply Solutions Pvt. Ltd.]',
+  registeredAddress: '[Registered office address, city, postcode, country]',
+  registrationNumber: '[Company registration number]',
+  vatNumber: '[VAT / tax number, if applicable]',
+  // Mailbox for privacy requests (access, deletion, ...) and legal questions
+  contactEmail: 'support@gscomply.com',
+  // Only fill in if you have appointed a Data Protection Officer; otherwise leave ''
+  dpo: '',
+  // Representative in the EU / UK, required by GDPR Art. 27 if the company is outside the EEA/UK and targets EU customers
+  euRepresentative: '[EU representative name and address, or write "Not applicable" if established in the EEA]',
+  // Where Supabase (database) is hosted, check Supabase > Project Settings > General
+  databaseRegion: '[Supabase region, e.g. Frankfurt (eu-central-1)]',
+  // How long enquiries are kept after the last contact
+  enquiryRetention: '[24 months]',
+  governingLaw: '[the laws of Country / State]',
+  courts: '[City, Country]',
 };
 
 // TODO: Replace placeholder credentials with real figures
 export const credentials = {
-  yearsExperience: '2+',
+  yearsExperience: '10+',
   mdsSubmissions: '5,000+',
   industriesServed: '20+',
   regulationsCovered: '18+',
@@ -28,11 +58,11 @@ export const credentials = {
 // TODO: Replace with real team member details
 export const team = [
   {
-    name: 'SelVa',
+    name: '[Founder Name]',
     role: 'Founder & Principal Consultant',
-    yearsExperience: '7+ years in regulatory compliance',
+    yearsExperience: '15+ years in regulatory compliance',
     // TODO: Replace with real LinkedIn profile URL
-    linkedinUrl: 'https://www.linkedin.com/in/selvamuthu-saravanan-s?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    linkedinUrl: 'https://www.linkedin.com/in/',
     // TODO: Replace /team/founder.jpg with a real photo (400x400)
     photo: '/team/founder.jpg',
     bio: '[Short bio: describe the founder background, experience with IMDS, REACH, automotive compliance, and what drives GS Comply Solutions. 2-3 sentences.]',

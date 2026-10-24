@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { company as site } from '@/data/company';
 import { Mail, MapPin, Phone, Globe2, Send, CheckCircle2, Loader2, Building2 } from 'lucide-react';
 import { IMAGES } from '@/lib/images';
 import { supabase } from '@/lib/supabase';
+import SEO from '@/components/SEO';
 
 const serviceOptions = [
   'Product Compliance',
@@ -110,10 +113,15 @@ export default function Contact() {
 
   return (
     <>
+      <SEO
+        title={"Contact Us: Discuss Your Compliance Requirement"}
+        description="Contact GS Comply Solutions to discuss REACH, RoHS, PFAS, IMDS, SCIP or sustainability compliance for your products. Send an enquiry or book a free consultation."
+        path="/contact"
+      />
       {/* Hero */}
       <section className="relative pt-28 lg:pt-36 pb-16 lg:pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={IMAGES.handshake2} alt="" className="w-full h-full object-cover" />
+          <img {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async" src={IMAGES.handshake2} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/85 to-gray-950/50" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -328,7 +336,9 @@ export default function Contact() {
                         className="mt-1 w-4 h-4 rounded border-gray-300 text-[#1A6B3C] focus:ring-[#1A6B3C]/20"
                       />
                       <span className="text-sm text-gray-600 leading-relaxed">
-                        I agree to be contacted regarding my enquiry.
+                        I agree that {site.name} may store my details and contact me about this enquiry, as described in the{' '}
+                        <Link to="/privacy-policy" className="text-[#1A6B3C] underline" target="_blank">Privacy Policy</Link>.
+                        I can withdraw this consent at any time.
                       </span>
                     </label>
                   </div>
