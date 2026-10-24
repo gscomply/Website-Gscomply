@@ -53,7 +53,7 @@ export const credentials = {
 };
 
 // TODO: Replace with real team member details
-//export const team = [
+export const team = [
 //  {
   //  name: '[Founder Name]',
   //  role: 'Founder & Principal Consultant',
