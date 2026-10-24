@@ -232,9 +232,6 @@ export const serviceCategories: ServiceCategory[] = [
         navLabels: [
           'Classroom Training',
           'Online Training',
-          'Regulation Training (REACH, RoHS, PFAS...)',
-          'Platform Training (IMDS, CDX, CAMDS)',
-          'Sustainability Training (LCA, PCF, CSRD)',
         ],
       },
     ],
