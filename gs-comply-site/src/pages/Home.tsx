@@ -46,9 +46,7 @@ const aboutHighlights = [
 ];
 
 const services = [
-  { icon: PackageCheck, title: 'Product Compliance', desc: 'Technical documentation, declarations of conformity, and market access requirements for your products.' },
-  { icon: Layers, title: 'Material Compliance', desc: 'Material composition analysis, substance data collection, and regulatory material declarations.' },
-  { icon: ScrollText, title: 'Regulatory Compliance', desc: 'REACH, RoHS, SCIP, TSCA, POPs, California Proposition 65, PFAS and other applicable requirements.' },
+  { icon: PackageCheck, title: 'Product & Material Compliance', desc: 'Technical documentation, declarations of conformity, and market access requirements for your products. Material composition analysis, substance data collection, and regulatory material declarations. REACH, RoHS, SCIP, TSCA, POPs, California Proposition 65, PFAS and other applicable requirements' },
   { icon: Database, title: 'IMDS & CDX', desc: 'Account setup, MDS creation, supplier data validation, submission, and rejection resolution.' },
   { icon: Truck, title: 'Supply Chain Compliance', desc: 'Supplier communication, CMRT and EMRT collection, data validation, and documentation management.' },
   { icon: Leaf, title: 'Sustainability Support', desc: 'Carbon accounting, LCA data collection, ESG reporting, CBAM, PPWR and sustainability regulations.' },
