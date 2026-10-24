@@ -55,15 +55,15 @@ export const credentials = {
 // TODO: Replace with real team member details
 export const team = [
 {
-  //  name: '[Founder Name]',
-  //  role: 'Founder & Principal Consultant',
-  //  yearsExperience: '15+ years in regulatory compliance',
+    name: '[Founder Name]',
+    role: 'Founder & Principal Consultant',
+    yearsExperience: '15+ years in regulatory compliance',
     // TODO: Replace with real LinkedIn profile URL
-  //  linkedinUrl: 'https://www.linkedin.com/in/',
+    linkedinUrl: 'https://www.linkedin.com/in/',
     // TODO: Replace /team/founder.jpg with a real photo (400x400)
    // photo: '/team/founder.jpg',
    // bio: '[Short bio: describe the founder background, experience with IMDS, REACH, automotive compliance, and what drives GS Comply Solutions. 2-3 sentences.]',
-  //},
+  },
   // TODO: Add more team members as needed
   // {
   //   name: '[Team Member Name]',
@@ -72,7 +72,7 @@ export const team = [
   //   linkedinUrl: 'https://www.linkedin.com/in/',
   //   photo: '/team/member2.jpg',
   //   bio: '[Short bio.]',
-   },
+  // },
 ];
 
 // TODO: Replace with anonymised real case studies. Do not use real client names.
