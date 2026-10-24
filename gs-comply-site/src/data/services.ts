@@ -22,7 +22,6 @@ export interface Service {
   title: string;
   who: string;
   deliverables: string[];
-  timeline: string;
   /** Menu entries that link to this card. Defaults to [title]. */
   navLabels?: string[];
 }
@@ -53,54 +52,23 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: 'product-compliance',
         icon: PackageCheck,
-        title: 'Product Compliance',
+        title:'Product & Material Compliance',
         who: 'For manufacturers who need to demonstrate product-level regulatory compliance for market access or customer requirements.',
         deliverables: [
           'Technical documentation files',
           'Declarations of conformity',
           'Product compliance assessment reports',
           'Customer-specific compliance documentation',
-        ],
-        timeline: '2 to 6 weeks depending on product complexity and data availability',
-      },
-      {
-        id: 'material-compliance',
-        icon: Layers,
-        title: 'Material Compliance',
-        who: 'For engineering and quality teams who need to document material compositions and manage substance declarations.',
-        deliverables: [
           'Material composition analysis reports',
-          'Substance data collection and structuring',
-          'Material declarations (MDS, IMDS, CDX format)',
-          'Regulatory substance screening reports',
-        ],
-        timeline: '1 to 4 weeks per product, depending on supplier response times',
-      },
-      {
-        id: 'regulatory-compliance',
-        icon: ScrollText,
-        title: 'Regulatory Compliance',
-        who: 'For regulatory affairs and product development teams who need to assess products against specific regulations.',
-        deliverables: [
           'REACH SVHC screening reports',
           'RoHS compliance assessments',
           'SCIP notification submissions',
           'PFAS and TSCA compliance documentation',
-        ],
-        timeline: '1 to 3 weeks per regulation, depending on product scope',
-      },
-      {
-        id: 'supply-chain-compliance',
-        icon: Truck,
-        title: 'Supply Chain Compliance',
-        who: 'For procurement and sourcing teams who need to collect and validate supplier compliance declarations.',
-        deliverables: [
           'Supplier declaration collection (CMRT, EMRT)',
           'Data validation and gap analysis reports',
           'Supplier follow-up tracking and escalation',
           'Compliance documentation management',
         ],
-        timeline: 'Ongoing, with initial data collection typically taking 4 to 8 weeks',
       },
       {
         id: 'compliance-data-management',
@@ -112,8 +80,11 @@ export const serviceCategories: ServiceCategory[] = [
           'Supplier compliance tracking dashboards',
           'Material and substance data management',
           'Audit-ready documentation packages',
+          'Material composition analysis reports',
+          'Substance data collection and structuring',
+          'Material declarations (MDS, IMDS, CDX format)',
+          'Regulatory substance screening reports',
         ],
-        timeline: 'Ongoing retainer or project-based setup',
       },
     ],
   },
@@ -136,7 +107,6 @@ export const serviceCategories: ServiceCategory[] = [
           'ESG reporting data packages',
           'CBAM and PPWR compliance documentation',
         ],
-        timeline: '4 to 12 weeks depending on reporting scope and supply chain depth',
         navLabels: ['Sustainability Support'],
       },
       {
@@ -150,7 +120,6 @@ export const serviceCategories: ServiceCategory[] = [
           'Environmental impact assessment results',
           'LCA report for customers or internal use',
         ],
-        timeline: SCOPED,
         navLabels: ['LCA (Life Cycle Assessment)'],
       },
       {
@@ -164,7 +133,6 @@ export const serviceCategories: ServiceCategory[] = [
           'Hotspot analysis across the product life cycle',
           'Customer-ready PCF report',
         ],
-        timeline: SCOPED,
         navLabels: ['PCF (Product Carbon Footprint)'],
       },
       {
@@ -178,7 +146,6 @@ export const serviceCategories: ServiceCategory[] = [
           'Data structuring for CBAM reporting',
           'Reporting support and documentation',
         ],
-        timeline: SCOPED,
         navLabels: ['CBAM Support'],
       },
       {
@@ -192,7 +159,6 @@ export const serviceCategories: ServiceCategory[] = [
           'Data gap analysis',
           'Reporting-ready data packages',
         ],
-        timeline: SCOPED,
         navLabels: ['CSRD & ESG Reporting'],
       },
     ],
@@ -210,13 +176,11 @@ export const serviceCategories: ServiceCategory[] = [
         title: 'IMDS & CDX',
         who: 'For automotive and industrial manufacturers who need to create, submit, and maintain material data sheets.',
         deliverables: [
-          'IMDS account setup and configuration',
+          'IMDS & CDX account setup and configuration',
           'MDS creation with correct material structuring',
           'Supplier MDS validation and approval',
           'Submission and rejection resolution',
-          'CDX platform setup and data management',
         ],
-        timeline: '3 to 10 business days per MDS, depending on supplier data availability',
         navLabels: ['IMDS', 'CDX'],
       },
       {
@@ -244,7 +208,6 @@ export const serviceCategories: ServiceCategory[] = [
           'Submission to the ECHA SCIP database',
           'Updates when the Candidate List changes',
         ],
-        timeline: SCOPED,
         navLabels: ['SCIP Database'],
       },
     ],
@@ -263,14 +226,11 @@ export const serviceCategories: ServiceCategory[] = [
         who: 'For compliance, engineering, procurement and quality teams who want to build in-house compliance skills.',
         deliverables: [
           'Classroom training, at your site or ours',
-          'Individual one-to-one training',
           'Online live and recorded sessions',
           'Topics: regulations (REACH, RoHS, PFAS), platforms (IMDS, CDX, CAMDS) and sustainability (LCA, PCF, CSRD)',
         ],
-        timeline: 'Programme length and format agreed with you',
         navLabels: [
           'Classroom Training',
-          'Individual Training',
           'Online Training',
           'Regulation Training (REACH, RoHS, PFAS...)',
           'Platform Training (IMDS, CDX, CAMDS)',
