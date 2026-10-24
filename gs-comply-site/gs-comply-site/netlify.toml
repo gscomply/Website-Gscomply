@@ -1,0 +1,25 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Edge functions in netlify/edge-functions/ run automatically (see the `config` export in each file):
+#   /insights, /insights/*  -> server-rendered HTML for search engines
+#   /rss.xml, /sitemap.xml  -> generated live from Supabase
+
+# Single-page-app fallback (the edge functions call context.next() to receive this index.html)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Admin pages must never be indexed
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

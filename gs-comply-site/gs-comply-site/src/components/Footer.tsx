@@ -1,0 +1,103 @@
+import { Link } from 'react-router-dom';
+import { Mail, MapPin, Clock, Linkedin, ArrowRight } from 'lucide-react';
+import { company } from '@/data/company';
+
+const footerLinks = {
+  Company: [
+    { label: 'About Us', path: '/about' },
+    { label: 'Services', path: '/services' },
+    { label: 'Industries', path: '/industries' },
+    { label: 'Contact', path: '/contact' },
+  ],
+  Expertise: [
+    { label: 'Product Compliance', path: '/services' },
+    { label: 'Material Compliance', path: '/services' },
+    { label: 'Regulatory Compliance', path: '/regulations' },
+    { label: 'IMDS & CDX', path: '/imds-cdx' },
+  ],
+  Resources: [
+    { label: 'Regulations & Standards', path: '/regulations' },
+    { label: 'Sustainability', path: '/sustainability' },
+    { label: 'Insights', path: '/insights' },
+    { label: 'Privacy Policy', path: '/privacy-policy' },
+    { label: 'Terms of Service', path: '/terms' },
+  ],
+};
+
+export default function Footer() {
+  return (
+    <footer className="bg-gray-950 text-gray-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          <div className="lg:col-span-2">
+            <Link to="/" className="flex items-center mb-5">
+              <img
+                src="/GS_comply__Logo.jpg"
+                alt="GS Comply Solutions logo"
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
+            <p className="text-sm leading-relaxed max-w-xs mb-6">
+              Regulatory and compliance support for manufacturers managing product, material,
+              environmental and supply-chain requirements across global markets.
+            </p>
+            <div className="space-y-2.5 text-sm">
+              <div className="flex items-start gap-2.5">
+                <Mail className="w-4 h-4 text-[#4ade80] shrink-0 mt-0.5" />
+                <a href={`mailto:${company.email}`} className="hover:text-white transition-colors">
+                  {company.email}
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#4ade80] shrink-0 mt-0.5" />
+                <span>{company.name}, {company.city}, {company.country}</span>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <Clock className="w-4 h-4 text-[#4ade80] shrink-0 mt-0.5" />
+                <span>{company.workingHours}</span>
+              </div>
+            </div>
+          </div>
+
+          {Object.entries(footerLinks).map(([title, links]) => (
+            <div key={title}>
+              <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
+                {title}
+              </h4>
+              <ul className="space-y-2.5">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.path}
+                      className="text-sm hover:text-white transition-colors flex items-center gap-1.5 group"
+                    >
+                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-14 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-500">
+            &copy; {new Date().getFullYear()} {company.name}. All rights reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href={company.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#1A6B3C] transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4 text-gray-300" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
