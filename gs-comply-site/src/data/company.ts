@@ -5,19 +5,16 @@
 
 export const company = {
   name: 'GS Comply Solutions',
-  domain: 'https://gscomply.com',
-  email: 'info@gscomply.com',
+  domain: import.meta.env.VITE_SITE_URL || 'https://gscomply.com',
+  email: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
   // TODO: Replace with real city and country
-  city: '[City]',
-  country: '[Country]',
+  city: 'Chennai',
+  country: 'India',
   // TODO: Replace with real working hours and time zone coverage
   workingHours: 'Mon to Fri, 8:00 to 18:00 CET (covers EU morning and US East overlap)',
-  // TODO: Replace with your real LinkedIn company page URL
-  linkedinUrl: 'https://www.linkedin.com/company/gs-comply-solutions',
-  // TODO: Replace with your real Calendly scheduling URL
-  calendlyUrl: 'https://calendly.com/gscomply/30min',
-  // TODO: Set to your verified Resend sending domain
-  notificationEmail: 'info@gscomply.com',
+  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || 'https://www.linkedin.com/company/gs-comply-solutions',
+  calendlyUrl: import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/gscomply/30min',
+  notificationEmail: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
 };
 
 // ============================================================
@@ -29,43 +26,43 @@ export const legal = {
   lastUpdated: '24 October 2026',
   version: '1.0',
   // The company that owns the website and decides how personal data is used (the GDPR "controller")
-  legalName: '[Registered legal name, e.g. GS Comply Solutions Pvt. Ltd.]',
-  registeredAddress: '[Registered office address, city, postcode, country]',
-  registrationNumber: '[Company registration number]',
-  vatNumber: '[VAT / tax number, if applicable]',
+  legalName: ' GS Comply Solutions',
+  registeredAddress: 'Rajiv Gandhi Saalai, Thayyur, Kelambakkam, Chennai, India ',
+  // registrationNumber: '',
+  // vatNumber: '',
   // Mailbox for privacy requests (access, deletion, ...) and legal questions
-  contactEmail: 'support@gscomply.com',
+  contactEmail: 'contact@gscomply.com',
   // Only fill in if you have appointed a Data Protection Officer; otherwise leave ''
   dpo: '',
   // Representative in the EU / UK, required by GDPR Art. 27 if the company is outside the EEA/UK and targets EU customers
-  euRepresentative: '[EU representative name and address, or write "Not applicable" if established in the EEA]',
+  // euRepresentative: '[EU representative name and address, or write "Not applicable" if established in the EEA]',
   // Where Supabase (database) is hosted, check Supabase > Project Settings > General
-  databaseRegion: '[Supabase region, e.g. Frankfurt (eu-central-1)]',
+  databaseRegion: 'Asia',
   // How long enquiries are kept after the last contact
-  enquiryRetention: '[24 months]',
-  governingLaw: '[the laws of Country / State]',
-  courts: '[City, Country]',
+  enquiryRetention: '24 months',
+  governingLaw: 'India',
+  courts: 'India',
 };
 
 // TODO: Replace placeholder credentials with real figures
 export const credentials = {
-  yearsExperience: '10+',
+  yearsExperience: '2+',
   mdsSubmissions: '5,000+',
   industriesServed: '20+',
   regulationsCovered: '18+',
 };
 
 // TODO: Replace with real team member details
-export const team = [
-  {
-    name: '[Founder Name]',
-    role: 'Founder & Principal Consultant',
-    yearsExperience: '15+ years in regulatory compliance',
+//export const team = [
+//  {
+  //  name: '[Founder Name]',
+  //  role: 'Founder & Principal Consultant',
+  //  yearsExperience: '15+ years in regulatory compliance',
     // TODO: Replace with real LinkedIn profile URL
-    linkedinUrl: 'https://www.linkedin.com/in/',
+  //  linkedinUrl: 'https://www.linkedin.com/in/',
     // TODO: Replace /team/founder.jpg with a real photo (400x400)
-    photo: '/team/founder.jpg',
-    bio: '[Short bio: describe the founder background, experience with IMDS, REACH, automotive compliance, and what drives GS Comply Solutions. 2-3 sentences.]',
+   // photo: '/team/founder.jpg',
+   // bio: '[Short bio: describe the founder background, experience with IMDS, REACH, automotive compliance, and what drives GS Comply Solutions. 2-3 sentences.]',
   },
   // TODO: Add more team members as needed
   // {
@@ -103,10 +100,10 @@ export const caseStudies = [
 // TODO: Replace with real testimonials. Do not invent client names or companies.
 export const testimonials = [
   {
-    quote: '[Real testimonial quote from a client describing the value GS Comply delivered. 2-3 sentences.]',
-    author: '[Client Name]',
-    role: '[Job Title]',
-    company: '[Company / Industry]',
+    quote: 'We sincerely appreciate GS Comply Solutions for their valuable support in IMDS submissions and substance analysis, ensuring alignment with customer requirements. Their technical expertise, attention to detail, and timely support helped streamline the compliance process and ensure accurate, reliable submissions.',
+    author: 'Quality Director - Tier1 sensor manufacturer',
+    role: 'Quality director',
+    company: '',
   },
   {
     quote: '[Real testimonial quote.]',
