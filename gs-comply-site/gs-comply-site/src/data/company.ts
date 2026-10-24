@@ -5,24 +5,21 @@
 
 export const company = {
   name: 'GS Comply Solutions',
-  domain: 'https://gscomply.com',
-  email: 'info@gscomply.com',
+  domain: import.meta.env.VITE_SITE_URL || 'https://gscomply.com',
+  email: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
   // TODO: Replace with real city and country
-  city: '[City]',
-  country: '[Country]',
+  city: 'Chennai',
+  country: 'India',
   // TODO: Replace with real working hours and time zone coverage
-  workingHours: 'Mon to Fri, 8:00 to 18:00 CET (covers EU morning and US East overlap)',
-  // TODO: Replace with your real LinkedIn company page URL
-  linkedinUrl: 'https://www.linkedin.com/company/gs-comply-solutions',
-  // TODO: Replace with your real Calendly scheduling URL
-  calendlyUrl: 'https://calendly.com/gscomply/30min',
-  // TODO: Set to your verified Resend sending domain
-  notificationEmail: 'info@gscomply.com',
+  workingHours: 'Mon to Fri, 8:00 to 18:00 CET',
+  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || 'https://www.linkedin.com/company/gs-comply-solutions',
+  calendlyUrl: import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/gscomply/30min',
+  notificationEmail: import.meta.env.VITE_CONTACT_EMAIL || 'support@gscomply,
 };
 
 // TODO: Replace placeholder credentials with real figures
 export const credentials = {
-  yearsExperience: '10+',
+  yearsExperience: '2+',
   mdsSubmissions: '5,000+',
   industriesServed: '20+',
   regulationsCovered: '18+',
@@ -31,11 +28,11 @@ export const credentials = {
 // TODO: Replace with real team member details
 export const team = [
   {
-    name: '[Founder Name]',
+    name: 'SelVa',
     role: 'Founder & Principal Consultant',
-    yearsExperience: '15+ years in regulatory compliance',
+    yearsExperience: '7+ years in regulatory compliance',
     // TODO: Replace with real LinkedIn profile URL
-    linkedinUrl: 'https://www.linkedin.com/in/',
+    linkedinUrl: 'https://www.linkedin.com/in/selvamuthu-saravanan-s?utm_source=share_via&utm_content=profile&utm_medium=member_android',
     // TODO: Replace /team/founder.jpg with a real photo (400x400)
     photo: '/team/founder.jpg',
     bio: '[Short bio: describe the founder background, experience with IMDS, REACH, automotive compliance, and what drives GS Comply Solutions. 2-3 sentences.]',
