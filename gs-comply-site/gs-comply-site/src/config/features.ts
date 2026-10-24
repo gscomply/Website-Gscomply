@@ -5,7 +5,7 @@
  *                 and the admin area (/admin/*).
  *
  * It is OFF unless the environment variable VITE_BLOG_ENABLED is exactly "true".
- * To turn the blog back on later: set VITE_BLOG_ENABLED=true (in .env and in Netlify),
+ * To turn the blog back on later: set VITE_BLOG_ENABLED=true (in .env and in Vercel > Settings > Environment Variables),
  * then redeploy once. Nothing in the database or the code needs to change.
  */
 export const BLOG_ENABLED = import.meta.env.VITE_BLOG_ENABLED === 'true';

@@ -177,7 +177,7 @@ const sections: LegalSection[] = [
         <ul>
           <li><strong>Supabase</strong>: database and file storage where enquiries are stored (region: <V>{legal.databaseRegion}</V>).</li>
           <li><strong>Resend</strong>: sends us an email notification when you submit the contact form.</li>
-          <li><strong>Netlify</strong>: hosts and delivers the website (receives technical request data such as your IP address).</li>
+          <li><strong>Vercel</strong>: hosts and delivers the website (receives technical request data such as your IP address).</li>
           <li><strong>Google</strong> (Tag Manager / Analytics): analytics, only if you accept analytics cookies.</li>
           <li><strong>Pexels</strong>: some photographs on the site are loaded directly from Pexels’ servers, which means your IP address is
             sent to them when you view those pages.</li>
@@ -195,7 +195,7 @@ const sections: LegalSection[] = [
     title: 'Transfers outside the EEA / UK',
     body: (
       <p>
-        Some providers above (for example Google, Resend and Netlify) may process data in the United States or other countries outside the
+        Some providers above (for example Google, Resend and Vercel) may process data in the United States or other countries outside the
         EEA/UK. Where they do, we rely on an adequacy decision (such as the EU–US Data Privacy Framework for certified providers) or the
         European Commission’s Standard Contractual Clauses, together with additional safeguards where needed. You can ask us for a copy of
         the safeguards by writing to <a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a>.

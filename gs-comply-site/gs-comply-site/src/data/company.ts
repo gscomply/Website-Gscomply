@@ -5,16 +5,46 @@
 
 export const company = {
   name: 'GS Comply Solutions',
-  domain: import.meta.env.VITE_SITE_URL || 'https://gscomply.com',
-  email: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
+  domain: 'https://gscomply.com',
+  email: 'info@gscomply.com',
   // TODO: Replace with real city and country
   city: '[City]',
   country: '[Country]',
   // TODO: Replace with real working hours and time zone coverage
   workingHours: 'Mon to Fri, 8:00 to 18:00 CET (covers EU morning and US East overlap)',
-  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || 'https://www.linkedin.com/company/gs-comply-solutions',
-  calendlyUrl: import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/gscomply/30min',
-  notificationEmail: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
+  // TODO: Replace with your real LinkedIn company page URL
+  linkedinUrl: 'https://www.linkedin.com/company/gs-comply-solutions',
+  // TODO: Replace with your real Calendly scheduling URL
+  calendlyUrl: 'https://calendly.com/gscomply/30min',
+  // TODO: Set to your verified Resend sending domain
+  notificationEmail: 'info@gscomply.com',
+};
+
+// ============================================================
+// LEGAL DETAILS used by the Privacy Policy and Terms of Service.
+// Anything still in [square brackets] shows highlighted in yellow on the
+// pages so it cannot be missed. Replace every one before going live.
+// ============================================================
+export const legal = {
+  lastUpdated: '24 October 2026',
+  version: '1.0',
+  // The company that owns the website and decides how personal data is used (the GDPR "controller")
+  legalName: '[Registered legal name, e.g. GS Comply Solutions Pvt. Ltd.]',
+  registeredAddress: '[Registered office address, city, postcode, country]',
+  registrationNumber: '[Company registration number]',
+  vatNumber: '[VAT / tax number, if applicable]',
+  // Mailbox for privacy requests (access, deletion, ...) and legal questions
+  contactEmail: 'support@gscomply.com',
+  // Only fill in if you have appointed a Data Protection Officer; otherwise leave ''
+  dpo: '',
+  // Representative in the EU / UK, required by GDPR Art. 27 if the company is outside the EEA/UK and targets EU customers
+  euRepresentative: '[EU representative name and address, or write "Not applicable" if established in the EEA]',
+  // Where Supabase (database) is hosted, check Supabase > Project Settings > General
+  databaseRegion: '[Supabase region, e.g. Frankfurt (eu-central-1)]',
+  // How long enquiries are kept after the last contact
+  enquiryRetention: '[24 months]',
+  governingLaw: '[the laws of Country / State]',
+  courts: '[City, Country]',
 };
 
 // TODO: Replace placeholder credentials with real figures

@@ -29,92 +29,70 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
       className="absolute left-0 right-0 top-full bg-white border-t border-gray-200 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.18)]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {menu.kind === 'categories' ? (
-          <div className="grid grid-cols-[320px_minmax(0,1fr)] min-h-[420px]">
-            {/* left: categories */}
-            <div className="py-8 pr-6 border-r border-gray-200 flex flex-col">
-              <p className="text-[13px] font-semibold text-slate-500 uppercase tracking-wider mb-5">{menu.heading}</p>
-              <ul className="space-y-2">
-                {menu.categories.map((cat, i) => {
-                  const active = i === activeCat;
-                  return (
-                    <li key={cat.title}>
-                      <Link
-                        to={cat.path}
-                        onMouseEnter={() => setActiveCat(i)}
-                        onFocus={() => setActiveCat(i)}
-                        className={`flex items-center justify-between gap-3 rounded-lg border px-4 py-3.5 transition-colors ${
-                          active ? 'bg-[#e8f3ec] border-[#bcdcc9]' : 'border-transparent hover:bg-gray-50'
-                        }`}
-                      >
-                        <span className="min-w-0">
-                          <span className={`block text-[15.5px] font-semibold leading-snug ${active ? 'text-[#1A6B3C]' : 'text-gray-900'}`}>
-                            {cat.title}
-                          </span>
-                          <span className="block text-[13.5px] text-slate-500 leading-snug mt-1">{cat.description}</span>
+        <div className="grid grid-cols-[320px_minmax(0,1fr)] min-h-[420px]">
+          {/* left: categories */}
+          <div className="py-8 pr-6 border-r border-gray-200 flex flex-col">
+            <p className="text-[13px] font-semibold text-slate-500 uppercase tracking-wider mb-5">{menu.heading}</p>
+            <ul className="space-y-2">
+              {menu.categories.map((cat, i) => {
+                const active = i === activeCat;
+                return (
+                  <li key={cat.title}>
+                    <Link
+                      to={cat.path}
+                      onMouseEnter={() => setActiveCat(i)}
+                      onFocus={() => setActiveCat(i)}
+                      className={`flex items-center justify-between gap-3 rounded-lg border px-4 py-3.5 transition-colors ${
+                        active ? 'bg-[#e8f3ec] border-[#bcdcc9]' : 'border-transparent hover:bg-gray-50'
+                      }`}
+                    >
+                      <span className="min-w-0">
+                        <span className={`block text-[15.5px] font-semibold leading-snug ${active ? 'text-[#1A6B3C]' : 'text-gray-900'}`}>
+                          {cat.title}
                         </span>
-                        <ArrowRight className={`w-4 h-4 shrink-0 ${active ? 'text-[#1A6B3C]' : 'text-slate-400'}`} aria-hidden="true" />
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="mt-auto pt-6">
-                <div className="border-t border-gray-200 pt-5">
-                  <Link to={menu.footer.path} className="inline-flex items-center gap-2 text-[14.5px] font-semibold text-[#1A6B3C] hover:gap-3 transition-all">
-                    {menu.footer.label}
-                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                  </Link>
-                </div>
+                        <span className="block text-[13.5px] text-slate-500 leading-snug mt-1">{cat.description}</span>
+                      </span>
+                      <ArrowRight className={`w-4 h-4 shrink-0 ${active ? 'text-[#1A6B3C]' : 'text-slate-400'}`} aria-hidden="true" />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="mt-auto pt-6">
+              <div className="border-t border-gray-200 pt-5">
+                <Link to={menu.footer.path} className="inline-flex items-center gap-2 text-[14.5px] font-semibold text-[#1A6B3C] hover:gap-3 transition-all">
+                  {menu.footer.label}
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
               </div>
             </div>
+          </div>
 
-            {/* right: items of the active category */}
-            <div className="py-8 pl-10">
-              {menu.categories.map((cat, i) => (
-                <div key={cat.title} hidden={i !== activeCat}>
-                  <div className="flex items-center justify-between gap-6">
-                    <h3 className="text-[18px] font-semibold text-gray-900">{cat.title}</h3>
-                    <Link to={cat.path} className="inline-flex items-center gap-1 text-[14.5px] font-semibold text-[#1A6B3C] hover:underline">
-                      {cat.allLabel}
-                      <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
-                    </Link>
-                  </div>
-                  <ul className="mt-8 grid grid-cols-2 gap-x-10 gap-y-5">
-                    {cat.items.map((leaf) => (
-                      <li key={leaf.label} className="flex items-start gap-3">
-                        <Bullet />
-                        <Link to={leaf.path} className="text-[17px] text-gray-800 hover:text-[#1A6B3C] leading-snug transition-colors">
-                          {leaf.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="py-8 min-h-[300px]">
-            <div className="flex items-center justify-between gap-6">
-              <h3 className="text-[18px] font-semibold text-gray-900">{menu.title}</h3>
-              <Link to={menu.allPath} className="inline-flex items-center gap-1 text-[14.5px] font-semibold text-[#1A6B3C] hover:underline">
-                {menu.allLabel}
-                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
-              </Link>
-            </div>
-            <ul className="mt-8 grid grid-cols-3 gap-x-10 gap-y-4">
-              {menu.items.map((leaf) => (
-                <li key={leaf.label} className="flex items-start gap-3">
-                  <Bullet />
-                  <Link to={leaf.path} className="text-[17px] text-gray-800 hover:text-[#1A6B3C] leading-snug transition-colors">
-                    {leaf.label}
+          {/* right: items of the active category */}
+          <div className="py-8 pl-10">
+            {menu.categories.map((cat, i) => (
+              <div key={cat.title} hidden={i !== activeCat}>
+                <div className="flex items-center justify-between gap-6">
+                  <h3 className="text-[18px] font-semibold text-gray-900">{cat.title}</h3>
+                  <Link to={cat.path} className="inline-flex items-center gap-1 text-[14.5px] font-semibold text-[#1A6B3C] hover:underline">
+                    {cat.allLabel}
+                    <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </Link>
-                </li>
-              ))}
-            </ul>
+                </div>
+                <ul className="mt-8 grid grid-cols-3 gap-x-10 gap-y-5">
+                  {cat.items.map((leaf) => (
+                    <li key={leaf.label} className="flex items-start gap-3">
+                      <Bullet />
+                      <Link to={leaf.path} className="text-[17px] text-gray-800 hover:text-[#1A6B3C] leading-snug transition-colors">
+                        {leaf.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
@@ -309,22 +287,7 @@ export default function Header() {
                       <ChevronDown className={`w-5 h-5 transition-transform ${expanded ? 'rotate-180' : ''}`} aria-hidden="true" />
                     </button>
 
-                    {expanded && menu.kind === 'list' && (
-                      <div className="pb-4 pl-3 border-l-2 border-[#1A6B3C]/20 ml-1">
-                        <Link to={menu.allPath} className="inline-flex items-center gap-1 py-1 text-sm font-semibold text-[#1A6B3C]">
-                          {menu.allLabel} <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
-                        </Link>
-                        <ul className="mt-1">
-                          {menu.items.map((leaf) => (
-                            <li key={leaf.label}>
-                              <Link to={leaf.path} className="block py-2 text-[15px] text-gray-700">{leaf.label}</Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {expanded && menu.kind === 'categories' && (
+                    {expanded && (
                       <div className="pb-4 pl-3 border-l-2 border-[#1A6B3C]/20 ml-1">
                         <ul className="space-y-1">
                           {menu.categories.map((cat) => {

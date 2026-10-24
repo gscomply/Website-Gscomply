@@ -11,7 +11,7 @@ const { render, PAGES, blogEnabled } = await import(pathToFileURL(path.join(root
 const SITE = (process.env.SITE_URL || 'https://gscomply.com').replace(/\/+$/, '');
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 
-// Pristine shell with an empty root: used for the client-only routes (/admin/*, /insights/*)
+// Pristine shell with an empty root: used for the client-only routes (/admin/*) and as the template for live blog pages
 fs.writeFileSync(path.join(dist, '200.html'), template);
 
 function strip(html) {
@@ -33,7 +33,7 @@ function build(html, helmet) {
 }
 
 const pages = [...PAGES];
-if (blogEnabled) pages.push('/insights'); // sitemap only; /insights itself is rendered live by the edge function
+if (blogEnabled) pages.push('/insights'); // /insights itself is rendered live by api/blog.ts
 
 let count = 0;
 for (const url of PAGES) {
@@ -46,17 +46,23 @@ for (const url of PAGES) {
   console.log(`prerendered ${url.padEnd(18)} -> ${file.padEnd(24)} ${(out.length / 1024).toFixed(0)} KB  | ${title}`);
 }
 
-// Not-found page (served by Netlify with a real 404 status for unknown URLs)
+// Not-found page (static hosts such as Vercel serve 404.html with a real 404 status for unknown URLs)
 {
   const { html, helmet } = await render('/this-page-does-not-exist');
   fs.writeFileSync(path.join(dist, '404.html'), build(html, helmet));
   console.log('prerendered 404.html');
 }
 
-// Sitemap (static pages; blog posts are added live by the edge function when the blog is enabled)
+// Sitemap (static pages; blog posts are added live by api/blog.ts when the blog is enabled)
 const urls = pages.map((p) => `  <url><loc>${SITE}${p === '/' ? '/' : p}</loc></url>`).join('\n');
-fs.writeFileSync(
-  path.join(dist, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
-);
-console.log(`sitemap.xml: ${pages.length} URLs, ${count} pages prerendered`);
+if (blogEnabled) {
+  // A static file would shadow the live sitemap (api/blog.ts), which also lists blog posts. Do not write one.
+  console.log('sitemap.xml: served live by /api/blog (blog enabled)');
+} else {
+  fs.writeFileSync(
+    path.join(dist, 'sitemap.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+  );
+  console.log(`sitemap.xml: ${pages.length} URLs`);
+}
+console.log(`${count} pages prerendered`);
