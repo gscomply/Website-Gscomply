@@ -12,14 +12,13 @@ const footerLinks = {
     { label: 'Contact', path: '/contact' },
   ],
   Expertise: [
-    { label: 'Product Compliance', path: '/services' },
-    { label: 'Material Compliance', path: '/services' },
-    { label: 'Regulatory Compliance', path: '/regulations' },
+    { label: 'Product & Material Compliance', path: '/services' },
+    { label: Sustainability', path: '/sustainability' },
+    { label: 'Training', path: '/training' },
     { label: 'IMDS & CDX', path: '/imds-cdx' },
   ],
   Resources: [
     { label: 'Regulations & Standards', path: '/regulations' },
-    { label: 'Sustainability', path: '/sustainability' },
     ...(BLOG_ENABLED ? [{ label: 'Insights', path: '/insights' }] : []),
     { label: 'Privacy Policy', path: '/privacy-policy' },
     { label: 'Terms of Service', path: '/terms' },
