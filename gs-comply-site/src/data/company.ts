@@ -54,7 +54,7 @@ export const credentials = {
 
 // TODO: Replace with real team member details
 export const team = [
-//  {
+{
   //  name: '[Founder Name]',
   //  role: 'Founder & Principal Consultant',
   //  yearsExperience: '15+ years in regulatory compliance',
@@ -72,7 +72,7 @@ export const team = [
   //   linkedinUrl: 'https://www.linkedin.com/in/',
   //   photo: '/team/member2.jpg',
   //   bio: '[Short bio.]',
-  // },
+   },
 ];
 
 // TODO: Replace with anonymised real case studies. Do not use real client names.
