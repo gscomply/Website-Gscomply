@@ -63,7 +63,7 @@ export const credentials = {
     // TODO: Replace /team/founder.jpg with a real photo (400x400)
    // photo: '/team/founder.jpg',
    // bio: '[Short bio: describe the founder background, experience with IMDS, REACH, automotive compliance, and what drives GS Comply Solutions. 2-3 sentences.]',
-  },
+  //},
   // TODO: Add more team members as needed
   // {
   //   name: '[Team Member Name]',
