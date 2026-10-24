@@ -13,7 +13,7 @@ const footerLinks = {
   ],
   Expertise: [
     { label: 'Product & Material Compliance', path: '/services' },
-    { label: Sustainability', path: '/sustainability' },
+    { label: 'Sustainability', path: '/sustainability' },
     { label: 'Training', path: '/training' },
     { label: 'IMDS & CDX', path: '/imds-cdx' },
   ],
