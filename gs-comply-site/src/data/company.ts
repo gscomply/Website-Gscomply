@@ -44,14 +44,14 @@ export const legal: LegalDetails = {
   // The company that owns the website and decides how personal data is used (the GDPR "controller")
   legalName: ' GS Comply Solutions',
   registeredAddress: 'Rajiv Gandhi Saalai, Thayyur, Kelambakkam, Chennai, India ',
-  // registrationNumber: '',
-  // vatNumber: '',
+   registrationNumber: '',
+   vatNumber: '',
   // Mailbox for privacy requests (access, deletion, ...) and legal questions
   contactEmail: 'contact@gscomply.com',
   // Only fill in if you have appointed a Data Protection Officer; otherwise leave ''
   dpo: '',
   // Representative in the EU / UK, required by GDPR Art. 27 if the company is outside the EEA/UK and targets EU customers
-  // euRepresentative: '[EU representative name and address, or write "Not applicable" if established in the EEA]',
+  euRepresentative: '',
   // Where Supabase (database) is hosted, check Supabase > Project Settings > General
   databaseRegion: 'Asia',
   // How long enquiries are kept after the last contact
