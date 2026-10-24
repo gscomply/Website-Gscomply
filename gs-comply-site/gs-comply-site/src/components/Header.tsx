@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight, Calendar } from 'lucide-react';
+import { company } from '@/data/company';
 import { visibleNavigation, type NavItem, type NavMenu } from '@/data/navigation';
 
 const isActive = (pathname: string, item: NavItem) =>
@@ -244,6 +245,16 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2 shrink-0">
+            {/* 30-minute call booking (link set in src/data/company.ts > calendlyUrl) */}
+            <a
+              href={company.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden xl:inline-flex items-center gap-2 px-5 py-3 text-[16px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
+            >
+              <Calendar className="w-4 h-4" aria-hidden="true" />
+              Book a 30-min Call
+            </a>
             <Link
               to="/contact"
               className="hidden sm:inline-flex items-center px-6 py-3 bg-[#1A6B3C] text-white text-[16px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
@@ -358,6 +369,15 @@ export default function Header() {
             <Link to="/contact" className="mt-6 block px-4 py-3.5 bg-[#1A6B3C] text-white text-base font-semibold rounded-lg text-center">
               Get a Free Consultation
             </Link>
+            <a
+              href={company.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2 px-4 py-3.5 text-base font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg"
+            >
+              <Calendar className="w-5 h-5" aria-hidden="true" />
+              Book a 30-min Call
+            </a>
           </nav>
         </div>
       )}
