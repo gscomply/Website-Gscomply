@@ -1,6 +1,0 @@
-# GS Comply Solutions: https://gscomply.com
-User-agent: *
-Allow: /
-Disallow: /admin/
-
-Sitemap: https://gscomply.com/sitemap.xml
