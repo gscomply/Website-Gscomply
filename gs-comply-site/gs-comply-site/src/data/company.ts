@@ -5,16 +5,16 @@
 
 export const company = {
   name: 'GS Comply Solutions',
-  domain: import.meta.env.VITE_SITE_URL || 'https://gscomply.com',
-  email: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
+  domain: import.meta.env.VITE_SITE_URL ,
+  email: import.meta.env.VITE_CONTACT_EMAIL ,
   // TODO: Replace with real city and country
   city: 'Chennai',
   country: 'India',
   // TODO: Replace with real working hours and time zone coverage
   workingHours: 'Mon to Fri, 8:00 to 18:00 CET',
-  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || 'https://www.linkedin.com/company/gs-comply-solutions',
-  calendlyUrl: import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/gscomply/30min',
-  notificationEmail: import.meta.env.VITE_CONTACT_EMAIL || 'support@gscomply,
+  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL ,
+  calendlyUrl: import.meta.env.VITE_CALENDLY_URL ,
+  notificationEmail: import.meta.env.VITE_CONTACT_EMAIL ,
 };
 
 // TODO: Replace placeholder credentials with real figures
