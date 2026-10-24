@@ -22,7 +22,23 @@ export const company = {
 // Anything still in [square brackets] shows highlighted in yellow on the
 // pages so it cannot be missed. Replace every one before going live.
 // ============================================================
-export const legal = {
+export interface LegalDetails {
+  lastUpdated: string;
+  version: string;
+  legalName: string;
+  registeredAddress: string;
+  registrationNumber?: string;
+  vatNumber?: string;
+  contactEmail: string;
+  dpo?: string;
+  euRepresentative?: string;
+  databaseRegion: string;
+  enquiryRetention: string;
+  governingLaw: string;
+  courts: string;
+}
+
+export const legal: LegalDetails = {
   lastUpdated: '24 October 2026',
   version: '1.0',
   // The company that owns the website and decides how personal data is used (the GDPR "controller")
@@ -53,7 +69,16 @@ export const credentials = {
 };
 
 // TODO: Replace with real team member details
-export const team = [
+export interface TeamMember {
+  name: string;
+  role: string;
+  yearsExperience: string;
+  linkedinUrl: string;
+  photo?: string;
+  bio?: string;
+}
+
+export const team: TeamMember[] = [
 {
     name: '[Founder Name]',
     role: 'Founder & Principal Consultant',

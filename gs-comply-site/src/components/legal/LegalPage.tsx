@@ -11,7 +11,8 @@ export interface LegalSection {
 }
 
 /** Renders a company-data value; unreplaced [placeholders] are highlighted so they are never missed. */
-export function V({ children }: { children: string }) {
+export function V({ children }: { children?: string }) {
+  if (!children) return null;
   if (children.startsWith('[')) {
     return <mark className="bg-yellow-200 text-yellow-900 px-1 rounded">{children}</mark>;
   }

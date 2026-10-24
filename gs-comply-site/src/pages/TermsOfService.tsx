@@ -10,7 +10,7 @@ const sections: LegalSection[] = [
       <>
         <p>
           These terms govern your use of {company.domain.replace('https://', '')} (the “Website”), operated by <strong><V>{legal.legalName}</V></strong>{' '}
-          (“{company.name}”, “we”, “us”), registered at <V>{legal.registeredAddress}</V> (registration no. <V>{legal.registrationNumber}</V>). By using the
+          (“{company.name}”, “we”, “us”), registered at <V>{legal.registeredAddress}</V>{legal.registrationNumber && <> (registration no. <V>{legal.registrationNumber}</V>)</>}. By using the
           Website you agree to them. If you do not agree, please do not use it.
         </p>
         <p>The Website is intended for businesses and professionals. It is not intended for consumers or for anyone under 18.</p>

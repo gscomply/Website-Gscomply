@@ -156,7 +156,7 @@ export default function About() {
               <div key={member.name} className="p-7 rounded-xl bg-white border border-gray-100 hover:shadow-lg transition-all">
                 {/* TODO: Replace with real photo at the path specified in company.ts */}
                 <div className="w-24 h-24 rounded-full bg-[#1A6B3C]/10 flex items-center justify-center mb-5 overflow-hidden">
-                  {member.photo !== '/team/founder.jpg' ? (
+                  {member.photo && member.photo !== '/team/founder.jpg' ? (
                     <img loading="lazy" decoding="async" src={member.photo} alt={member.name} className="w-full h-full object-cover" />
                   ) : (
                     <Users className="w-10 h-10 text-[#1A6B3C]/40" />
@@ -165,7 +165,7 @@ export default function About() {
                 <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
                 <p className="text-sm font-medium text-[#1A6B3C] mt-1">{member.role}</p>
                 <p className="text-xs text-gray-500 mt-1">{member.yearsExperience}</p>
-                <p className="text-sm text-gray-600 leading-relaxed mt-4">{member.bio}</p>
+                {member.bio && <p className="text-sm text-gray-600 leading-relaxed mt-4">{member.bio}</p>}
                 <a
                   href={member.linkedinUrl}
                   target="_blank"

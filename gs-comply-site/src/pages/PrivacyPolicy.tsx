@@ -18,10 +18,10 @@ const sections: LegalSection[] = [
         </p>
         <ul>
           <li>Registered address: <V>{legal.registeredAddress}</V></li>
-          <li>Registration number: <V>{legal.registrationNumber}</V></li>
+          {legal.registrationNumber && <li>Registration number: <V>{legal.registrationNumber}</V></li>}
           <li>Privacy contact: <a href={`mailto:${legal.contactEmail}`}>{legal.contactEmail}</a></li>
           {legal.dpo && <li>Data Protection Officer: {legal.dpo}</li>}
-          <li>EU / UK representative: <V>{legal.euRepresentative}</V></li>
+          {legal.euRepresentative && <li>EU / UK representative: <V>{legal.euRepresentative}</V></li>}
         </ul>
         <p>This policy explains what personal data we collect through the website, why, who we share it with, and your rights.</p>
       </>
