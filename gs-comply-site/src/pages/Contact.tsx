@@ -9,16 +9,15 @@ import SEO from '@/components/SEO';
 const serviceOptions = [
   'Product Compliance',
   'Material Compliance',
-  'Regulatory Compliance',
   'IMDS',
   'CDX',
   'REACH',
   'RoHS',
   'PFAS',
-  'Supply Chain Compliance',
   'Sustainability',
   'Carbon Accounting',
   'LCA Support',
+  'ESG',
   'Other',
 ];
 
@@ -267,7 +266,7 @@ export default function Contact() {
                     </div>
                     {/* Optional fields */}
                     <div>
-                      <label className={labelClass}>Phone Number</label>
+                      <label className={labelClass}>Phone Number *</label>
                       <input
                         type="tel"
                         name="phone"
