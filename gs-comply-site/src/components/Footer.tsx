@@ -18,7 +18,7 @@ interface FooterGroup {
 const serviceCategory = {
   title: 'Company',
   links: [
-    {label: 'Product & Material Compliance', path: '/product-material-compliance',},
+    {label: 'Product & Material Compliance', path: '/product-material-compliance'},
     { label: 'SCIP Notification ', path: '/scip-notification-services' },
   ] ,
 };
