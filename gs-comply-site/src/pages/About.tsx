@@ -19,7 +19,7 @@ import {
 import SEO from '@/components/SEO';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
-import {credentials } from '@/data/company'; // To Do Add team, caseStudies, testimonials, once enebled the testimonal and team
+import {credentials } from '@/data/company'; {/* To Do Add team, caseStudies, testimonials, once enebled the testimonal and team */}
 
 const highlights = [
   { icon: Factory, title: 'Manufacturer-Focused', desc: 'Built around the realities of production environments and engineering teams.' },
