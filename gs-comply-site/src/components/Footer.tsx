@@ -16,9 +16,10 @@ interface FooterGroup {
 
 // Services column: one category heading with its pages indented underneath.
 const serviceCategory = {
+  title: 'Company',
   links: [
-{label: 'Product & Material Compliance', path: '/product-material-compliance',},
-{ label: 'SCIP Notification Services', path: '/scip-notification-services' },
+    {label: 'Product & Material Compliance', path: '/product-material-compliance',},
+    { label: 'SCIP Notification ', path: '/scip-notification-services' },
   ] ,
 };
 
