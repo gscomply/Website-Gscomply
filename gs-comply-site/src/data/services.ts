@@ -89,7 +89,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Material declarations (MDS, IMDS, CDX format)',
           'Regulatory substance screening reports',
         ],
-        path: '/product-material-compliance',
+        path: '/product-material-compliance#support',
       },
     ],
   },

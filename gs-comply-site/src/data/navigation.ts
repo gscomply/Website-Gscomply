@@ -4,7 +4,7 @@ import { serviceCategories } from '@/data/services';
 // ============================================================
 // SITE NAVIGATION: edit this file to change the menu bar.
 //
-//   Home - Industries - Services (dropdown) - Regulations & Standards - About - Contact
+//   Home - Industries - Services (dropdown) - Regulations - About - Contact
 //
 // The Services dropdown is built automatically from src/data/services.ts,
 // so adding a service there adds it to the menu and to the Services page.
@@ -58,7 +58,7 @@ export const navigation: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Industries', path: '/industries' },
   { label: 'Services', path: '/services', menu: servicesMenu },
-  { label: 'Regulations & Standards', path: '/regulations' },
+  { label: 'Regulations', path: '/regulations' },
   { label: 'Insights', path: '/insights', blog: true },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },

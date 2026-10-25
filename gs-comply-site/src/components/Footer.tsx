@@ -23,35 +23,53 @@ const serviceCategory = {
   ] as FooterLink[],
 };
 
-const footerGroups: FooterGroup[] = [
-  {
-    title: 'Company',
-    links: [
-      { label: 'About Us', path: '/about' },
-      { label: 'Services', path: '/services' },
-      { label: 'Industries', path: '/industries' },
-      { label: 'Contact', path: '/contact' },
-    ],
-  },
-  {
-    title: 'Expertise',
-    links: [
-      { label: 'Regulations & Standards', path: '/regulations' },
-      { label: 'Sustainability Services', path: '/sustainability' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      ...(BLOG_ENABLED ? [{ label: 'Insights', path: '/insights' }] : []),
-      { label: 'Privacy Policy', path: '/privacy-policy' },
-      { label: 'Terms of Service', path: '/terms' },
-    ],
-  },
-];
-
 const linkCls = 'text-sm hover:text-white transition-colors flex items-center gap-1.5 group';
 const Arrow = () => <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />;
+
+const companyGroup: FooterGroup = {
+  title: 'Company',
+  links: [
+    { label: 'About Us', path: '/about' },
+    { label: 'Services', path: '/services' },
+    { label: 'Industries', path: '/industries' },
+    { label: 'Contact', path: '/contact' },
+  ],
+};
+
+const expertiseGroup: FooterGroup = {
+  title: 'Expertise',
+  links: [
+    { label: 'Regulations', path: '/regulations' },
+    { label: 'Sustainability Services', path: '/sustainability' },
+  ],
+};
+
+// Quick Links: Insights stays in the code and appears automatically once the blog is enabled
+// (VITE_BLOG_ENABLED=true); until then it is hidden.
+const quickLinksGroup: FooterGroup = {
+  title: 'Quick Links',
+  links: [
+    ...(BLOG_ENABLED ? [{ label: 'Insights', path: '/insights' }] : []),
+    { label: 'Privacy Policy', path: '/privacy-policy' },
+    { label: 'Terms of Service', path: '/terms' },
+  ],
+};
+
+const SimpleColumn = ({ title, links }: FooterGroup) => (
+  <div>
+    <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">{title}</h4>
+    <ul className="space-y-2.5">
+      {links.map((link) => (
+        <li key={link.label}>
+          <Link to={link.path} className={linkCls}>
+            <Arrow />
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 export default function Footer() {
   return (
@@ -88,6 +106,8 @@ export default function Footer() {
             </div>
           </div>
 
+          <SimpleColumn {...companyGroup} />
+          <SimpleColumn {...expertiseGroup} />
           <div>
             <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">Services</h4>
             <ul className="space-y-2.5">
@@ -122,23 +142,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {footerGroups.map(({ title, links }) => (
-            <div key={title}>
-              <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
-                {title}
-              </h4>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link to={link.path} className={linkCls}>
-                      <Arrow />
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <SimpleColumn {...quickLinksGroup} />
         </div>
 
         <div className="mt-14 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">

@@ -198,7 +198,7 @@ export default function ScipNotification() {
           <h2 className="text-xl font-bold text-gray-900 mb-6">Related services</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { to: '/regulations', label: 'Regulations & Standards', desc: 'REACH, RoHS, PFAS, SCIP and more.' },
+              { to: '/regulations', label: 'Regulations', desc: 'REACH, RoHS, PFAS, SCIP and more.' },
               { to: '/imds-cdx', label: 'IMDS & CDX Services', desc: 'Material data sheets and submissions.' },
               { to: '/product-material-compliance', label: 'Product & Material Compliance', desc: 'SVHC screening and declarations.' },
             ].map((item) => (

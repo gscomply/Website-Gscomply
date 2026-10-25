@@ -315,7 +315,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-semibold text-[#1A6B3C] uppercase tracking-wider">
-              Regulations & Standards
+              Regulations
             </span>
             <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
               Navigate global regulations with confidence

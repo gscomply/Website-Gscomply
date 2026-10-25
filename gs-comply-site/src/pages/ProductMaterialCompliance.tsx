@@ -127,7 +127,7 @@ export default function ProductMaterialCompliance() {
           </div>
           <p className="mt-10 text-center text-sm text-gray-600">
             Looking for the full reference?{' '}
-            <Link to="/regulations" className="font-semibold text-[#1A6B3C] hover:underline">Regulations &amp; Standards</Link>
+            <Link to="/regulations" className="font-semibold text-[#1A6B3C] hover:underline">Regulations</Link>
             {' · '}
             <Link to="/scip-notification-services" className="font-semibold text-[#1A6B3C] hover:underline">SCIP Notification Services</Link>
           </p>

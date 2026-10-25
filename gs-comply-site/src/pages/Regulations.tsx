@@ -11,12 +11,12 @@ export default function Regulations() {
   return (
     <>
       <SEO
-        title={"Regulations & Standards We Cover: REACH, RoHS, PFAS, IMDS, SCIP"}
+        title={"Regulations We Cover: REACH, RoHS, PFAS, IMDS, SCIP"}
         description="Understand REACH, RoHS, PFAS, SCIP, IMDS, CDX, CMRT, CBAM, PPWR and the EU Battery Regulation. We help manufacturers collect data and keep compliance documentation ready."
         path="/regulations"
       />
       <PageHero
-        title="Regulations & Standards"
+        title="Regulations"
         subtitle="We help manufacturers understand applicable requirements, collect the right information and maintain the documentation needed to support customers and global market access."
         image={IMAGES.architectBlueprints}
         breadcrumb="Regulations"
@@ -51,6 +51,9 @@ export default function Regulations() {
                         <h4 className="text-base font-semibold text-gray-900">{item.name}</h4>
                       </div>
                       <p className="text-sm text-gray-600 leading-relaxed pl-8">{item.desc}</p>
+                      <p className="mt-3 ml-8 pl-3 border-l-2 border-amber-300 text-[13px] text-gray-600 leading-relaxed">
+                        <strong className="text-gray-800">If not complied: </strong>{item.consequence}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -67,7 +70,7 @@ export default function Regulations() {
             <Info className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
             <p className="text-sm text-gray-500 leading-relaxed">
               GS Comply Solutions provides compliance support and documentation assistance. We do
-              not issue official government certifications. Certification and official declarations
+              not issue official government certifications. Penalties vary by country and case and are described here in general terms only; they are not legal advice. Certification and official declarations
               must be obtained through the appropriate regulatory bodies and notified bodies.
             </p>
           </div>

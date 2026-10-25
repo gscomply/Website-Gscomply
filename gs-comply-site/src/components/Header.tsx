@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight, Calendar } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight, ArrowRight, ArrowUpRight, Calendar } from 'lucide-react';
 import { company } from '@/data/company';
 import { visibleNavigation, type NavItem, type NavMenu } from '@/data/navigation';
 
@@ -38,11 +38,13 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
                 const active = i === activeCat;
                 return (
                   <li key={cat.title}>
-                    <Link
-                      to={cat.path}
+                    <button
+                      type="button"
+                      aria-pressed={active}
                       onMouseEnter={() => setActiveCat(i)}
                       onFocus={() => setActiveCat(i)}
-                      className={`flex items-center justify-between gap-3 rounded-lg border px-4 py-3.5 transition-colors ${
+                      onClick={() => setActiveCat(i)}
+                      className={`w-full text-left flex items-center justify-between gap-3 rounded-lg border px-4 py-3.5 transition-colors ${
                         active ? 'bg-[#e8f3ec] border-[#bcdcc9]' : 'border-transparent hover:bg-gray-50'
                       }`}
                     >
@@ -52,8 +54,8 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
                         </span>
                         <span className="block text-[13.5px] text-slate-500 leading-snug mt-1">{cat.description}</span>
                       </span>
-                      <ArrowRight className={`w-4 h-4 shrink-0 ${active ? 'text-[#1A6B3C]' : 'text-slate-400'}`} aria-hidden="true" />
-                    </Link>
+                      <ChevronRight className={`w-4 h-4 shrink-0 ${active ? 'text-[#1A6B3C]' : 'text-slate-400'}`} aria-hidden="true" />
+                    </button>
                   </li>
                 );
               })}
@@ -180,7 +182,7 @@ export default function Header() {
               {visibleNavigation.map((item) => {
                 const active = isActive(location.pathname, item);
                 const open = openMenu === item.label;
-                const cls = `inline-flex items-center gap-1.5 px-3.5 py-2 text-[16px] font-medium rounded-md transition-colors ${
+                const cls = `inline-flex items-center gap-1.5 px-3.5 py-2 text-[16px] font-medium rounded-md transition-colors whitespace-nowrap ${
                   active || open ? 'text-[#1A6B3C]' : 'text-gray-900 hover:text-[#1A6B3C]'
                 }`;
 
