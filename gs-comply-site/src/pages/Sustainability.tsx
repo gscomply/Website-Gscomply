@@ -3,6 +3,7 @@ import {
   Leaf,
   ArrowRight,
   Recycle,
+  Footprints,
   Globe2,
   TrendingDown,
   FileBarChart,
@@ -17,12 +18,12 @@ import CTABanner from '@/components/CTABanner';
 import SEO from '@/components/SEO';
 
 const sustainabilityServices = [
+  { icon: Recycle, title: 'Life Cycle Assessment (LCA)', desc: 'Gathering and structuring material, energy and process data to quantify the environmental impact of a product across its life cycle.' },
+  { icon: Footprints, title: 'Product Carbon Footprint (PCF)', desc: 'Product-level carbon footprint calculation with emission data documentation and customer-ready PCF reports.' },
+  { icon: TrendingDown, title: 'Carbon Accounting', desc: 'Support for Scope 1, 2 and 3 emissions data collection, carbon summaries, and carbon reporting requirements.' },
   { icon: FileBarChart, title: 'Sustainability Data Collection', desc: 'Systematic collection of sustainability data from suppliers and internal sources, structured for reporting and analysis.' },
-  { icon: TrendingDown, title: 'Carbon Accounting', desc: 'Support for carbon footprint calculation, Scope 1, 2 and 3 emissions data collection, and carbon reporting requirements.' },
-  { icon: Recycle, title: 'LCA Support', desc: 'Life Cycle Assessment support — gathering material and process data to support environmental impact analysis.' },
-  { icon: Factory, title: 'Environmental Reporting', desc: 'Preparation and management of environmental reports required by regulations, customers, or corporate sustainability programs.' },
-  { icon: Globe2, title: 'ESG Data Support', desc: 'Collection and structuring of Environmental, Social and Governance data for ESG reporting frameworks.' },
-  { icon: Leaf, title: 'Regulatory Sustainability Requirements', desc: 'Support for emerging sustainability regulations including CBAM, PPWR, EU Battery Regulation and related requirements.' },
+  { icon: Globe2, title: 'Environmental, ESG & CSRD Reporting', desc: 'Preparation of environmental and ESG data packages for regulations, customer questionnaires and corporate sustainability programs.' },
+  { icon: Leaf, title: 'CBAM, PPWR & Battery Regulation Support', desc: 'Support for emerging sustainability regulations including CBAM, PPWR, EU Battery Regulation and related requirements.' },
 ];
 
 const regulations = [
@@ -42,15 +43,15 @@ export default function Sustainability() {
   return (
     <>
       <SEO
-        title={"Sustainability Support: LCA, Carbon Footprint, CBAM & ESG Data"}
-        description="Support for sustainability data collection, carbon accounting, LCA, environmental reporting, ESG data and regulatory requirements such as CBAM and PPWR."
+        title={"Sustainability Services: LCA, PCF, CBAM & ESG Data"}
+        description="Sustainability services for manufacturers: Life Cycle Assessment (LCA), Product Carbon Footprint (PCF), carbon accounting, ESG and CSRD data, and CBAM and PPWR requirements."
         path="/sustainability"
       />
       <PageHero
-        title="Sustainability Support"
-        subtitle="Support for sustainability data collection, carbon accounting, LCA support, environmental reporting, ESG data and regulatory sustainability requirements."
+        title="Sustainability Services"
+        subtitle="Life Cycle Assessment (LCA), Product Carbon Footprint (PCF), carbon accounting, ESG data and regulatory sustainability requirements."
         image={IMAGES.windTurbines}
-        breadcrumb="Sustainability"
+        breadcrumb="Sustainability Services"
       />
 
       {/* Intro */}

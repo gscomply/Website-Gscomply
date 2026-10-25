@@ -1,5 +1,5 @@
 import {
-  PackageCheck, Layers, ScrollText, Database, Truck, Leaf, Recycle, Footprints,
+  PackageCheck, Layers, ScrollText, Database, Truck, Recycle, Footprints,
   Globe2, FileBarChart, Network, ShieldCheck, GraduationCap, type LucideIcon,
 } from 'lucide-react';
 
@@ -24,6 +24,8 @@ export interface Service {
   deliverables: string[];
   /** Menu entries that link to this card. Defaults to [title]. */
   navLabels?: string[];
+  /** Dedicated page for this service. Menu links go here instead of /services#<id>. */
+  path?: string;
 }
 
 export interface ServiceCategory {
@@ -38,8 +40,6 @@ export interface ServiceCategory {
   allLabel: string;
   services: Service[];
 }
-
-const SCOPED = 'Scoped per project and agreed in your proposal';
 
 export const serviceCategories: ServiceCategory[] = [
   {
@@ -95,20 +95,6 @@ export const serviceCategories: ServiceCategory[] = [
     intro: 'Collect, structure and report the environmental and ESG data your customers and regulators ask for.',
     allLabel: 'All Sustainability Services',
     services: [
-      {
-        id: 'sustainability-support',
-        icon: Leaf,
-        title: 'Sustainability Support',
-        who: 'For sustainability and environmental teams who need to collect, structure, and report ESG and carbon data.',
-        deliverables: [
-          'Sustainability data collection templates',
-          'Carbon accounting data summaries (Scope 1, 2, 3)',
-          'LCA data gathering and structuring',
-          'ESG reporting data packages',
-          'CBAM and PPWR compliance documentation',
-        ],
-        navLabels: ['Sustainability Support'],
-      },
       {
         id: 'lca',
         icon: Recycle,
@@ -194,13 +180,12 @@ export const serviceCategories: ServiceCategory[] = [
           'Submission and customer approval follow-up',
           'Rejection analysis and correction',
         ],
-        timeline: SCOPED,
         navLabels: ['CAMDS'],
       },
       {
         id: 'scip',
         icon: ShieldCheck,
-        title: 'SCIP Database Notification',
+        title: 'SCIP Notification Services',
         who: 'For suppliers of articles in the EU that contain Candidate List (SVHC) substances and must notify the ECHA SCIP database.',
         deliverables: [
           'SVHC presence screening',
@@ -208,7 +193,8 @@ export const serviceCategories: ServiceCategory[] = [
           'Submission to the ECHA SCIP database',
           'Updates when the Candidate List changes',
         ],
-        navLabels: ['SCIP Database'],
+        navLabels: ['SCIP Notification Services'],
+        path: '/scip-notification-services',
       },
     ],
   },

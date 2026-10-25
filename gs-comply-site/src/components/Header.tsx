@@ -169,7 +169,7 @@ export default function Header() {
       </a>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[72px] lg:h-20 gap-4">
+        <div className="flex items-center justify-between h-[72px] lg:h-20 gap-3 xl:gap-4">
           <Link to="/" className="flex items-center shrink-0" aria-label="GS Comply Solutions home">
             <img src="/logo.png" alt="GS Comply Solutions" width={198} height={49} className="h-10 lg:h-[46px] w-auto" />
           </Link>
@@ -180,7 +180,7 @@ export default function Header() {
               {visibleNavigation.map((item) => {
                 const active = isActive(location.pathname, item);
                 const open = openMenu === item.label;
-                const cls = `inline-flex items-center gap-1.5 px-3.5 py-2 text-[16px] font-medium rounded-md transition-colors ${
+                const cls = `inline-flex items-center gap-1.5 px-2.5 xl:px-3 py-2 text-[15px] xl:text-[16px] font-medium rounded-md transition-colors whitespace-nowrap ${
                   active || open ? 'text-[#1A6B3C]' : 'text-gray-900 hover:text-[#1A6B3C]'
                 }`;
 
@@ -188,7 +188,14 @@ export default function Header() {
                   return (
                     <li key={item.label}>
                       <Link to={item.path} aria-current={active ? 'page' : undefined} className={cls}>
-                        {item.label}
+                        {item.shortLabel ? (
+                          <>
+                            <span className="2xl:hidden">{item.shortLabel}</span>
+                            <span className="hidden 2xl:inline">{item.label}</span>
+                          </>
+                        ) : (
+                          item.label
+                        )}
                       </Link>
                     </li>
                   );
@@ -228,14 +235,14 @@ export default function Header() {
               href={company.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden xl:inline-flex items-center gap-2 px-5 py-3 text-[16px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
+              className="hidden 2xl:inline-flex items-center gap-2 px-5 py-3 text-[16px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
             >
               <Calendar className="w-4 h-4" aria-hidden="true" />
               Book a 30-min Call
             </a>
             <Link
               to="/contact"
-              className="hidden sm:inline-flex items-center px-6 py-3 bg-[#1A6B3C] text-white text-[16px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
+              className="hidden sm:inline-flex lg:hidden xl:inline-flex items-center px-6 py-3 bg-[#1A6B3C] text-white text-[16px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
             >
               Get a Free Consultation
             </Link>

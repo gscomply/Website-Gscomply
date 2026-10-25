@@ -31,7 +31,7 @@ const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 // Keep in sync with PAGES in src/entry-server.tsx
 const STATIC_PAGES = [
   '/', '/about', '/services', '/industries', '/regulations', '/imds-cdx',
-  '/sustainability', '/contact', '/privacy-policy', '/terms',
+  '/sustainability', '/scip-notification-services', '/contact', '/privacy-policy', '/terms',
 ];
 const CDN_CACHE = 'public, max-age=0, s-maxage=120, stale-while-revalidate=300';
 

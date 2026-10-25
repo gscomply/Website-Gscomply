@@ -58,6 +58,11 @@ export const IMAGES = {
   aerospaceFactory: P('7178310'),
   aircraftWing: P('7178310'),
   rocketAssembly: P('7178310'),
+  // SCIP notification page (re-uses photos already used elsewhere on the site)
+  scipHero: P('12324202'),
+  scipDocs: P('8296977'),
+  scipProduction: P('5532664'),
+  scipMaterials: P('3520692'),
   // Misc
   architectBlueprints: P('12324202'),
   blueprintRuler: P('12324202'),

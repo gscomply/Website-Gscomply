@@ -38,7 +38,8 @@ export default function JsonLd() {
     areaServed: ['Europe', 'North America', 'Asia'],
     serviceType: [
       'Product Compliance', 'Material Compliance', 'Regulatory Compliance',
-      'IMDS and CDX Support', 'Supply Chain Compliance', 'Sustainability Support',
+      'IMDS and CDX Support', 'Supply Chain Compliance', 'Sustainability Services',
+      'SCIP Notification Services',
     ],
   };
 

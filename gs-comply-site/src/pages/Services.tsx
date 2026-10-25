@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import {
+  ArrowRight,
   FileText,
   CheckCircle2,
   Settings,
   UserCheck,
   Users,
-  Clock,
 } from 'lucide-react';
 import SEO from '@/components/SEO';
 import PageHero from '@/components/PageHero';
@@ -22,7 +23,7 @@ export default function Services() {
 
       <PageHero
         title="Our Services"
-        subtitle="Compliance support with defined deliverables, clear timelines, and a structured approach for each engagement."
+        subtitle="Compliance support with defined deliverables and a structured approach for each engagement."
         breadcrumb="Services"
       />
 
@@ -37,7 +38,7 @@ export default function Services() {
               Services with clear outputs
             </h2>
             <p className="mt-4 text-base text-gray-600 leading-relaxed">
-              Each service specifies who it is for, what we deliver, and a typical timeline so you
+              Each service specifies who it is for and what we deliver, so you
               know what to expect before we start.
             </p>
           </div>
@@ -82,6 +83,11 @@ export default function Services() {
                           <Users className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
                           <p className="text-xs text-gray-500 leading-relaxed">{service.who}</p>
                         </div>
+                        {service.path && (
+                          <Link to={service.path} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A6B3C] hover:gap-2.5 transition-all">
+                            Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                          </Link>
+                        )}
                       </div>
                       <div className="lg:col-span-2 grid sm:grid-cols-2 gap-3">
                         {service.deliverables.map((item) => (
@@ -90,10 +96,6 @@ export default function Services() {
                             <span className="text-sm text-gray-700 font-medium">{item}</span>
                           </div>
                         ))}
-                        <div className="sm:col-span-2 flex items-start gap-2.5 p-3.5 rounded-lg bg-[#1A6B3C]/5 border border-[#1A6B3C]/10">
-                          <Clock className="w-5 h-5 text-[#1A6B3C] shrink-0 mt-0.5" />
-                          <span className="text-sm text-gray-700"><strong>Typical timeline:</strong> {service.timeline}</span>
-                        </div>
                       </div>
                     </div>
                   ))}

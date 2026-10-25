@@ -4,33 +4,61 @@ import { openCookieSettings } from '@/lib/consent';
 import { company } from '@/data/company';
 import { BLOG_ENABLED } from '@/config/features';
 
-const footerLinks = {
-  Company: [
-    { label: 'About Us', path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Industries', path: '/industries' },
-    { label: 'Contact', path: '/contact' },
-  ],
-  Expertise: [
-    { label: 'Product Compliance', path: '/services' },
-    { label: 'Material Compliance', path: '/services' },
-    { label: 'Regulatory Compliance', path: '/regulations' },
-    { label: 'IMDS & CDX', path: '/imds-cdx' },
-  ],
-  Resources: [
-    { label: 'Regulations & Standards', path: '/regulations' },
-    { label: 'Sustainability', path: '/sustainability' },
-    ...(BLOG_ENABLED ? [{ label: 'Insights', path: '/insights' }] : []),
-    { label: 'Privacy Policy', path: '/privacy-policy' },
-    { label: 'Terms of Service', path: '/terms' },
-  ],
+interface FooterLink {
+  label: string;
+  path: string;
+}
+
+interface FooterGroup {
+  title: string;
+  links: FooterLink[];
+}
+
+// Services column: one category heading with its pages indented underneath.
+const serviceCategory = {
+  label: 'Product & Material Compliance',
+  path: '/services#product-material-compliance',
+  children: [
+    { label: 'Compliance Data Management', path: '/services#compliance-data-management' },
+    { label: 'SCIP Notification Services', path: '/scip-notification-services' },
+  ] as FooterLink[],
 };
+
+const footerGroups: FooterGroup[] = [
+  {
+    title: 'Company',
+    links: [
+      { label: 'About Us', path: '/about' },
+      { label: 'Services', path: '/services' },
+      { label: 'Industries', path: '/industries' },
+      { label: 'Contact', path: '/contact' },
+    ],
+  },
+  {
+    title: 'Expertise',
+    links: [
+      { label: 'Regulations & Standards', path: '/regulations' },
+      { label: 'Sustainability Services', path: '/sustainability' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      ...(BLOG_ENABLED ? [{ label: 'Insights', path: '/insights' }] : []),
+      { label: 'Privacy Policy', path: '/privacy-policy' },
+      { label: 'Terms of Service', path: '/terms' },
+    ],
+  },
+];
+
+const linkCls = 'text-sm hover:text-white transition-colors flex items-center gap-1.5 group';
+const Arrow = () => <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />;
 
 export default function Footer() {
   return (
     <footer className="bg-gray-950 text-gray-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center mb-5">
               <img
@@ -61,7 +89,35 @@ export default function Footer() {
             </div>
           </div>
 
-          {Object.entries(footerLinks).map(([title, links]) => (
+          <div>
+            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">Services</h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link to={serviceCategory.path} className={`${linkCls} text-gray-200 font-medium`}>
+                  <Arrow />
+                  {serviceCategory.label}
+                </Link>
+                <ul className="mt-2.5 ml-3 pl-3 border-l border-gray-800 space-y-2.5">
+                  {serviceCategory.children.map((link) => (
+                    <li key={link.label}>
+                      <Link to={link.path} className={linkCls}>
+                        <Arrow />
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+              <li>
+                <Link to="/imds-cdx" className={`${linkCls} text-gray-200 font-medium`}>
+                  <Arrow />
+                  IMDS & CDX Services
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {footerGroups.map(({ title, links }) => (
             <div key={title}>
               <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">
                 {title}
@@ -69,11 +125,8 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      to={link.path}
-                      className="text-sm hover:text-white transition-colors flex items-center gap-1.5 group"
-                    >
-                      <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Link to={link.path} className={linkCls}>
+                      <Arrow />
                       {link.label}
                     </Link>
                   </li>
