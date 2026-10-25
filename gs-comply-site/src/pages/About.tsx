@@ -19,7 +19,9 @@ import {
 import SEO from '@/components/SEO';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
-import {credentials } from '@/data/company'; {/* To Do Add team, caseStudies, testimonials, once enebled the testimonal and team */}
+import { team, caseStudies, testimonials,credentials } from '@/data/company'; 
+
+// {/* To Do: Add team, caseStudies, testimonials, once enebled the testimonal and team */}
 
 const highlights = [
   { icon: Factory, title: 'Manufacturer-Focused', desc: 'Built around the realities of production environments and engineering teams.' },
@@ -154,7 +156,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {team.map((member) => (
               <div key={member.name} className="p-7 rounded-xl bg-white border border-gray-100 hover:shadow-lg transition-all">
-                {/* TODO: Replace with real photo at the path specified in company.ts */}
+                // TODO: Replace with real photo at the path specified in company.ts 
                 <div className="w-24 h-24 rounded-full bg-[#1A6B3C]/10 flex items-center justify-center mb-5 overflow-hidden">
                   {member.photo && member.photo !== '/team/founder.jpg' ? (
                     <img loading="lazy" decoding="async" src={member.photo} alt={member.name} className="w-full h-full object-cover" />
