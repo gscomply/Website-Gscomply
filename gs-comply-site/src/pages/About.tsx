@@ -19,7 +19,7 @@ import {
 import SEO from '@/components/SEO';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
-import { team, caseStudies, testimonials, credentials } from '@/data/company';
+import {credentials } from '@/data/company'; // To Do Add team, caseStudies, testimonials, once enebled the testimonal and team
 
 const highlights = [
   { icon: Factory, title: 'Manufacturer-Focused', desc: 'Built around the realities of production environments and engineering teams.' },
@@ -140,7 +140,7 @@ export default function About() {
       </section>
 
       {/* Founder / Team */}
-      {/* TODO: Replace team member details in src/data/company.ts with real information
+{/* TODO: Replace team member details in src/data/company.ts with real information
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -181,6 +181,7 @@ export default function About() {
         </div>
       </section>
 */}
+
       {/* Case Studies */}
       {/* TODO: Replace anonymised case studies with real examples in src/data/company.ts 
       <section className="py-20 lg:py-28 bg-white">
