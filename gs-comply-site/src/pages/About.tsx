@@ -140,7 +140,7 @@ export default function About() {
       </section>
 
       {/* Founder / Team */}
-      {/* TODO: Replace team member details in src/data/company.ts with real information */}
+      {/* TODO: Replace team member details in src/data/company.ts with real information -->
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -182,7 +182,7 @@ export default function About() {
       </section>
 
       {/* Case Studies */}
-      {/* TODO: Replace anonymised case studies with real examples in src/data/company.ts */}
+      {/* TODO: Replace anonymised case studies with real examples in src/data/company.ts -->
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -222,7 +222,7 @@ export default function About() {
       </section>
 
       {/* Testimonials */}
-      {/* TODO: Replace placeholder testimonials with real quotes in src/data/company.ts */}
+      {/* TODO: Replace placeholder testimonials with real quotes in src/data/company.ts -->
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
