@@ -1,6 +1,17 @@
-# GS Comply Solutions: https://gscomply.com
+# robots.txt for GS Comply Solutions
+# https://gscomply.com
+
 User-agent: *
 Allow: /
-Disallow: /admin/
 
+# Sitemap location
 Sitemap: https://gscomply.com/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin and private paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /_redirects
