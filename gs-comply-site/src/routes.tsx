@@ -13,6 +13,8 @@ const Industries = lazy(() => import('@/pages/Industries'));
 const Regulations = lazy(() => import('@/pages/Regulations'));
 const ImdsCdx = lazy(() => import('@/pages/ImdsCdx'));
 const Sustainability = lazy(() => import('@/pages/Sustainability'));
+const ProductMaterialCompliance = lazy(() => import('@/pages/ProductMaterialCompliance'));
+const TrainingServices = lazy(() => import('@/pages/TrainingServices'));
 const ScipNotification = lazy(() => import('@/pages/ScipNotification'));
 const Insights = lazy(() => import('@/pages/Insights'));
 const BlogPost = lazy(() => import('@/pages/BlogPost'));
@@ -61,6 +63,8 @@ export const routes: RouteObject[] = [
           { path: '/regulations', element: <S><Regulations /></S> },
           { path: '/imds-cdx', element: <S><ImdsCdx /></S> },
           { path: '/sustainability', element: <S><Sustainability /></S> },
+          { path: '/product-material-compliance', element: <S><ProductMaterialCompliance /></S> },
+          { path: '/training-services', element: <S><TrainingServices /></S> },
           { path: '/scip-notification-services', element: <S><ScipNotification /></S> },
           ...(BLOG_ENABLED
             ? [

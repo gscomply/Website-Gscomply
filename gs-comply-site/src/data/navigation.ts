@@ -4,8 +4,7 @@ import { serviceCategories } from '@/data/services';
 // ============================================================
 // SITE NAVIGATION: edit this file to change the menu bar.
 //
-//   Home - Industries - Services (dropdown) - Sustainability Services -
-//   IMDS & CDX Services - Regulations & Standards - About - Contact
+//   Home - Industries - Services (dropdown) - Regulations & Standards - About - Contact
 //
 // The Services dropdown is built automatically from src/data/services.ts,
 // so adding a service there adds it to the menu and to the Services page.
@@ -35,8 +34,6 @@ export interface NavMenu {
 
 export interface NavItem {
   label: string;
-  /** Shorter text for the desktop bar on narrow laptop screens (full label shows from xl up) */
-  shortLabel?: string;
   path: string;
   menu?: NavMenu;
   /** Hidden unless the blog feature is enabled */
@@ -49,7 +46,7 @@ const servicesMenu: NavMenu = {
   categories: serviceCategories.map((cat) => ({
     title: cat.title,
     description: cat.description,
-    path: `/services#${cat.id}`,
+    path: cat.path ?? `/services#${cat.id}`,
     allLabel: cat.allLabel,
     items: cat.services.flatMap((s) =>
       (s.navLabels ?? [s.title]).map((label) => ({ label, path: s.path ?? `/services#${s.id}` }))
@@ -61,9 +58,7 @@ export const navigation: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Industries', path: '/industries' },
   { label: 'Services', path: '/services', menu: servicesMenu },
-  { label: 'Sustainability Services', shortLabel: 'Sustainability', path: '/sustainability' },
-  { label: 'IMDS & CDX Services', shortLabel: 'IMDS & CDX', path: '/imds-cdx' },
-  { label: 'Regulations & Standards', shortLabel: 'Regulations', path: '/regulations' },
+  { label: 'Regulations & Standards', path: '/regulations' },
   { label: 'Insights', path: '/insights', blog: true },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },

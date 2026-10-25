@@ -200,7 +200,7 @@ export default function ScipNotification() {
             {[
               { to: '/regulations', label: 'Regulations & Standards', desc: 'REACH, RoHS, PFAS, SCIP and more.' },
               { to: '/imds-cdx', label: 'IMDS & CDX Services', desc: 'Material data sheets and submissions.' },
-              { to: '/services#product-material-compliance', label: 'Product & Material Compliance', desc: 'SVHC screening and declarations.' },
+              { to: '/product-material-compliance', label: 'Product & Material Compliance', desc: 'SVHC screening and declarations.' },
             ].map((item) => (
               <Link
                 key={item.to}

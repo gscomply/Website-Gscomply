@@ -62,6 +62,11 @@ export default function Services() {
                 <div className="mb-8 pb-5 border-b border-gray-200">
                   <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">{cat.title}</h2>
                   <p className="mt-2 text-gray-600">{cat.intro}</p>
+                  {cat.path && (
+                    <Link to={cat.path} className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A6B3C] hover:gap-2.5 transition-all">
+                      {cat.allLabel} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                  )}
                 </div>
                 <div className="space-y-6">
                   {cat.services.map((service, idx) => (

@@ -9,7 +9,8 @@ import { BLOG_ENABLED } from './config/features';
 /** Pages that exist as real, indexable URLs. Used for prerendering AND the sitemap. */
 export const PAGES = [
   '/', '/about', '/services', '/industries', '/regulations', '/imds-cdx',
-  '/sustainability', '/scip-notification-services', '/contact', '/privacy-policy', '/terms',
+  '/sustainability', '/scip-notification-services',
+  '/product-material-compliance', '/training-services', '/contact', '/privacy-policy', '/terms',
 ];
 export const blogEnabled = BLOG_ENABLED;
 

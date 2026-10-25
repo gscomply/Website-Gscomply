@@ -165,8 +165,22 @@ export default function ImdsCdx() {
         </div>
       </section>
 
+      {/* CAMDS */}
+      <section id="camds" className="scroll-mt-28 py-20 lg:py-24 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="text-xs font-semibold text-[#1A6B3C] uppercase tracking-wider">Also supported</span>
+          <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">CAMDS support</h2>
+          <p className="mt-5 text-base text-gray-600 leading-relaxed">
+            CAMDS (China Automotive Material Data System) is the material data platform used by Chinese automotive
+            customers. If you supply them, we help with access and account guidance, material data entry and structuring,
+            submission and customer approval follow-up, and rejection analysis and correction, using the same approach
+            as for IMDS and CDX.
+          </p>
+        </div>
+      </section>
+
       <CTABanner
-        title="Need IMDS or CDX support?"
+        title="Need IMDS, CDX or CAMDS support?"
         subtitle="Whether you're setting up a new account or resolving rejections on existing submissions, our IMDS specialists can help."
       />
     </>

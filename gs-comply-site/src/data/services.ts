@@ -38,12 +38,15 @@ export interface ServiceCategory {
   intro: string;
   /** Text of the "All ... ↗" link in the navbar menu */
   allLabel: string;
+  /** Dedicated page for the whole category. Defaults to its section on /services. */
+  path?: string;
   services: Service[];
 }
 
 export const serviceCategories: ServiceCategory[] = [
   {
     id: 'product-material-compliance',
+    path: '/product-material-compliance',
     title: 'Product & Material Compliance',
     description: 'REACH, RoHS, PFAS, GADSL, ELV and more',
     intro: 'Demonstrate product, material and substance compliance for market access and customer requirements.',
@@ -69,6 +72,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Supplier follow-up tracking and escalation',
           'Compliance documentation management',
         ],
+        path: '/product-material-compliance',
       },
       {
         id: 'compliance-data-management',
@@ -85,11 +89,13 @@ export const serviceCategories: ServiceCategory[] = [
           'Material declarations (MDS, IMDS, CDX format)',
           'Regulatory substance screening reports',
         ],
+        path: '/product-material-compliance',
       },
     ],
   },
   {
     id: 'sustainability-services',
+    path: '/sustainability',
     title: 'Sustainability Services',
     description: 'LCA, PCF, CBAM, CSRD, ESG reporting',
     intro: 'Collect, structure and report the environmental and ESG data your customers and regulators ask for.',
@@ -107,6 +113,7 @@ export const serviceCategories: ServiceCategory[] = [
           'LCA report for customers or internal use',
         ],
         navLabels: ['LCA (Life Cycle Assessment)'],
+        path: '/sustainability',
       },
       {
         id: 'pcf',
@@ -120,6 +127,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Customer-ready PCF report',
         ],
         navLabels: ['PCF (Product Carbon Footprint)'],
+        path: '/sustainability',
       },
       {
         id: 'cbam',
@@ -133,6 +141,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Reporting support and documentation',
         ],
         navLabels: ['CBAM Support'],
+        path: '/sustainability',
       },
       {
         id: 'csrd-esg',
@@ -146,6 +155,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Reporting-ready data packages',
         ],
         navLabels: ['CSRD & ESG Reporting'],
+        path: '/sustainability',
       },
     ],
   },
@@ -168,6 +178,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Submission and rejection resolution',
         ],
         navLabels: ['IMDS', 'CDX'],
+        path: '/imds-cdx',
       },
       {
         id: 'camds',
@@ -181,6 +192,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Rejection analysis and correction',
         ],
         navLabels: ['CAMDS'],
+        path: '/imds-cdx',
       },
       {
         id: 'scip',
@@ -200,6 +212,7 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: 'training-programs',
+    path: '/training-services',
     title: 'Training Programs',
     description: 'Classroom, individual & online training',
     intro: 'Build compliance skills inside your own team, in the format that suits you.',
@@ -219,6 +232,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Classroom Training',
           'Online Training',
         ],
+        path: '/training-services',
       },
     ],
   },

@@ -17,9 +17,8 @@ interface FooterGroup {
 // Services column: one category heading with its pages indented underneath.
 const serviceCategory = {
   label: 'Product & Material Compliance',
-  path: '/services#product-material-compliance',
+  path: '/product-material-compliance',
   children: [
-    { label: 'Compliance Data Management', path: '/services#compliance-data-management' },
     { label: 'SCIP Notification Services', path: '/scip-notification-services' },
   ] as FooterLink[],
 };
@@ -112,6 +111,12 @@ export default function Footer() {
                 <Link to="/imds-cdx" className={`${linkCls} text-gray-200 font-medium`}>
                   <Arrow />
                   IMDS & CDX Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/training-services" className={`${linkCls} text-gray-200 font-medium`}>
+                  <Arrow />
+                  Training Services
                 </Link>
               </li>
             </ul>
