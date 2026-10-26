@@ -43,6 +43,7 @@ export default function Contact() {
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [errorRef, setErrorRef] = useState('');
   const [honeypot, setHoneypot] = useState(''); // hidden anti-spam field: real visitors never fill it
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -62,6 +63,7 @@ export default function Contact() {
     }
     setStatus('submitting');
     setErrorMsg('');
+    setErrorRef('');
     const fallbackMsg = `Something went wrong. Please try again or email us directly at ${site.email}.`;
     const payload = {
       full_name: form.full_name.trim(),
@@ -92,14 +94,17 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      if (res.status === 404 || res.status === 405) {
-        apiAvailable = false; // host without the function (e.g. local preview): use the direct route below
+      const out: { ok?: boolean; code?: string } = await res.json().catch(() => ({}));
+      if (res.ok && out.ok) return reset();
+      // No usable answer from the function (not deployed, or it crashed): use the direct route below.
+      if (res.status === 404 || res.status === 405 || (res.status >= 500 && !out.code)) {
+        apiAvailable = false;
+        setErrorRef(`api ${res.status}`);
       } else {
-        const out = await res.json().catch(() => ({} as { ok?: boolean; code?: string }));
-        if (res.ok && out.ok) return reset();
         setStatus('error');
+        setErrorRef(out.code || `api ${res.status}`);
         setErrorMsg(
-          out.code === 'INVALID_FIELDS' ? 'Please check the highlighted details: name, company, country, a valid email and a message are required.'
+          out.code === 'INVALID_FIELDS' ? 'Please check your details: name, company, country, a valid email and a message are required.'
           : out.code === 'NO_CONSENT' ? 'Please agree to be contacted regarding your enquiry.'
           : fallbackMsg,
         );
@@ -107,6 +112,7 @@ export default function Contact() {
       }
     } catch {
       apiAvailable = false;
+      setErrorRef('api unreachable');
     }
 
     // 2) Fallback route: save straight to Supabase from the browser, then call the Supabase email function.
@@ -117,15 +123,19 @@ export default function Contact() {
           message: payload.message, phone: payload.phone, job_title: payload.job_title, industry: payload.industry,
           service_required: payload.service_required, consent: payload.consent,
         });
-        if (error) throw error;
+        if (error) {
+          setErrorRef(`db ${error.code || ''} ${error.message || ''}`.trim().slice(0, 120));
+          throw error;
+        }
         fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-enquiry-notification`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}` },
           body: JSON.stringify(payload),
         }).catch(() => null);
         reset();
-      } catch {
+      } catch (err) {
         setStatus('error');
+        if (!(err as { code?: string })?.code) setErrorRef((prev) => `${prev} / ${(err as Error)?.message || 'network error'}`.slice(0, 140));
         setErrorMsg(fallbackMsg);
       }
     }
@@ -236,6 +246,7 @@ export default function Contact() {
                   {status === 'error' && (
                     <div className="mb-5 p-4 rounded-lg bg-red-50 border border-red-200">
                       <p className="text-sm text-red-700">{errorMsg}</p>
+                      {errorRef && <p className="mt-1 text-xs text-red-500">Reference: {errorRef}</p>}
                     </div>
                   )}
                   <div className="grid sm:grid-cols-2 gap-5">

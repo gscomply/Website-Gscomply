@@ -21,6 +21,10 @@ const env = (...names: string[]) => names.map((n) => process.env[n]).find(Boolea
 const supabaseUrl = () => env('VITE_SUPABASE_URL', 'SUPABASE_URL').replace(/\/+$/, '');
 const serviceKey = () => env('SUPABASE_SERVICE_ROLE_KEY');
 const dbKey = () => serviceKey() || env('VITE_SUPABASE_ANON_KEY', 'SUPABASE_ANON_KEY');
+// New-style Supabase keys (sb_publishable_..., sb_secret_...) go in the apikey header only; legacy keys are JWTs
+// (start with "eyJ") and are also sent as a Bearer token. Sending a non-JWT key as Bearer is rejected.
+const dbHeaders = (key: string): Record<string, string> =>
+  key.startsWith('eyJ') ? { apikey: key, Authorization: `Bearer ${key}` } : { apikey: key };
 const notifyTo = () => env('CONTACT_NOTIFICATION_EMAIL', 'VITE_CONTACT_EMAIL') || 'info.gscomply@gmail.com';
 const notifyFrom = () => env('CONTACT_FROM_EMAIL') || 'GS Comply Website <onboarding@resend.dev>';
 
@@ -32,6 +36,11 @@ function send(res: ServerResponse, status: number, body: Record<string, unknown>
 }
 
 async function readJson(req: IncomingMessage): Promise<Record<string, unknown>> {
+  // Vercel may already have parsed the body for us; use it if so, otherwise read the stream.
+  const pre = (req as IncomingMessage & { body?: unknown }).body;
+  if (pre && typeof pre === 'object' && !Buffer.isBuffer(pre)) return pre as Record<string, unknown>;
+  if (typeof pre === 'string' && pre) return JSON.parse(pre);
+  if (Buffer.isBuffer(pre) && pre.length) return JSON.parse(pre.toString('utf8'));
   const chunks: Buffer[] = [];
   let size = 0;
   for await (const chunk of req) {
@@ -50,7 +59,7 @@ async function dbCheck(): Promise<string> {
   if (!supabaseUrl() || !dbKey()) return 'not_configured';
   try {
     const r = await fetch(`${supabaseUrl()}/rest/v1/enquiries?select=id&limit=1`, {
-      headers: { apikey: dbKey(), Authorization: `Bearer ${dbKey()}` },
+      headers: dbHeaders(dbKey()),
     });
     if (r.ok) return 'ok';
     if (r.status === 404) return 'table_missing (run supabase/migrations/20260923060206_create_enquiries_table.sql)';
@@ -119,17 +128,18 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   try {
     const r = await fetch(`${supabaseUrl()}/rest/v1/enquiries`, {
       method: 'POST',
-      headers: {
-        apikey: dbKey(),
-        Authorization: `Bearer ${dbKey()}`,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal',
-      },
+      headers: { ...dbHeaders(dbKey()), 'Content-Type': 'application/json', Prefer: 'return=minimal' },
       body: JSON.stringify(data),
     });
     if (!r.ok) {
-      console.error('[contact] Supabase insert failed', r.status, (await r.text()).slice(0, 500));
-      return send(res, 502, { ok: false, code: r.status === 404 ? 'TABLE_MISSING' : 'DB_ERROR' });
+      const detail = (await r.text()).slice(0, 500);
+      console.error('[contact] Supabase insert failed', r.status, detail);
+      // A blocked insert (row-level security) also arrives as HTTP 401, so check the message first.
+      const code = /row-level security|42501/i.test(detail) ? 'DB_POLICY_BLOCKED'
+        : r.status === 404 ? 'TABLE_MISSING'
+        : r.status === 401 ? 'DB_KEY_REJECTED'
+        : `DB_ERROR_${r.status}`;
+      return send(res, 502, { ok: false, code });
     }
   } catch (err) {
     console.error('[contact] Supabase unreachable', err);
