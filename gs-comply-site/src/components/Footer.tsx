@@ -18,9 +18,9 @@ const servicesGroup: FooterGroup = {
   title: 'Services',
   links: [
     { label: 'Product & Material Compliance', path: '/product-material-compliance' },
-    { label: 'IMDS & CDX Services', path: '/imds-cdx' },
-    { label: 'SCIP Notification Services', path: '/scip-notification-services' },
-    { label: 'Training Services', path: '/training-services' },
+    { label: 'IMDS & CDX ', path: '/imds-cdx' },
+    { label: 'SCIP Notification ', path: '/scip-notification-services' },
+    { label: 'Training ', path: '/training-services' },
   ],
 };
 
@@ -41,7 +41,7 @@ const expertiseGroup: FooterGroup = {
   title: 'Expertise',
   links: [
     { label: 'Regulations', path: '/regulations' },
-    { label: 'Sustainability Services', path: '/sustainability' },
+    { label: 'Sustainability Reporting', path: '/sustainability' },
   ],
 };
 
