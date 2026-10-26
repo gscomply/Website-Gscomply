@@ -12,7 +12,7 @@
  *   VITE_SUPABASE_ANON_KEY       required   anon public key (or set SUPABASE_SERVICE_ROLE_KEY instead)
  *   RESEND_API_KEY               optional   without it, enquiries are still saved but no email is sent
  *   CONTACT_NOTIFICATION_EMAIL   optional   where notifications go (default: VITE_CONTACT_EMAIL, then info.gscomply@gmail.com)
- *   CONTACT_FROM_EMAIL           optional   sender, e.g. "GS Comply Website <enquiries@gscomply.com>" (needs a domain verified in Resend;
+ *   CONTACT_FROM_EMAIL           optional   sender (RESEND_FROM_EMAIL also works), e.g. "GS Comply Website <enquiries@gscomply.com>" (needs a domain verified in Resend;
  *                                           the default onboarding@resend.dev can only deliver to the email address of your Resend account)
  */
 import type { IncomingMessage, ServerResponse } from 'node:http';
@@ -26,7 +26,8 @@ const dbKey = () => serviceKey() || env('VITE_SUPABASE_ANON_KEY', 'SUPABASE_ANON
 const dbHeaders = (key: string): Record<string, string> =>
   key.startsWith('eyJ') ? { apikey: key, Authorization: `Bearer ${key}` } : { apikey: key };
 const notifyTo = () => env('CONTACT_NOTIFICATION_EMAIL', 'VITE_CONTACT_EMAIL') || 'info.gscomply@gmail.com';
-const notifyFrom = () => env('CONTACT_FROM_EMAIL') || 'GS Comply Website <onboarding@resend.dev>';
+// CONTACT_FROM_EMAIL is the documented name; RESEND_FROM_EMAIL is accepted too. A bare address or "Name <address>" both work.
+const notifyFrom = () => env('CONTACT_FROM_EMAIL', 'RESEND_FROM_EMAIL') || 'GS Comply Website <onboarding@resend.dev>';
 
 function send(res: ServerResponse, status: number, body: Record<string, unknown>) {
   res.statusCode = status;
@@ -80,7 +81,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       supabaseKey: serviceKey() ? 'service_role' : env('VITE_SUPABASE_ANON_KEY', 'SUPABASE_ANON_KEY') ? 'anon' : false,
       database: await dbCheck(),
       RESEND_API_KEY: !!env('RESEND_API_KEY'),
-      notificationFrom: env('CONTACT_FROM_EMAIL') ? 'custom' : 'onboarding@resend.dev (only delivers to your Resend account email)',
+      notificationFrom: env('CONTACT_FROM_EMAIL', 'RESEND_FROM_EMAIL') ? 'custom' : 'onboarding@resend.dev (only delivers to your Resend account email)',
       notificationTo: notifyTo().replace(/^(.).*(@.*)$/, '$1***$2'),
       VITE_CALENDLY_URL: !!env('VITE_CALENDLY_URL'),
       note: 'Environment variable changes only apply after a new deployment.',
@@ -108,13 +109,13 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     company: str(body.company, 200),
     country: str(body.country, 100),
     message: str(body.message, 5000),
-    phone: str(body.phone, 60) || null,
+    phone: str(body.phone, 60),
     job_title: str(body.job_title, 200) || null,
     industry: str(body.industry, 100) || null,
     service_required: str(body.service_required, 100) || null,
     consent: body.consent === true,
   };
-  if (!data.full_name || !data.company || !data.country || !data.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+  if (!data.full_name || !data.company || !data.country || !data.message || !data.phone || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
     return send(res, 400, { ok: false, code: 'INVALID_FIELDS' });
   }
   if (!data.consent) return send(res, 400, { ok: false, code: 'NO_CONSENT' });

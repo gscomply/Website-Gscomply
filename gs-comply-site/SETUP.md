@@ -129,7 +129,7 @@ and untick "Use existing Build Cache"). Editing a variable alone changes nothing
 | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | saving enquiries (required) |
 | `RESEND_API_KEY` | the notification email (without it the enquiry is still saved, just no email) |
 | `CONTACT_NOTIFICATION_EMAIL` | where notifications go (default `VITE_CONTACT_EMAIL`, then info.gscomply@gmail.com) |
-| `CONTACT_FROM_EMAIL` | sender, e.g. `GS Comply Website <enquiries@gscomply.com>` (needs a domain verified in Resend) |
+| `CONTACT_FROM_EMAIL` (or `RESEND_FROM_EMAIL`) | sender, e.g. `GS Comply Website <enquiries@gscomply.com>` (needs a domain verified in Resend) |
 | `VITE_CALENDLY_URL` | the "Book a 30-min Call" buttons, e.g. `https://calendly.com/your-name/30min` |
 
 **Quick health check:** open `https://YOUR-DOMAIN/api/contact?check=1`. It lists which settings are present and whether the

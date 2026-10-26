@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { company as site } from '@/data/company';
-import { Mail, MapPin, Phone, Globe2, Send, CheckCircle2, Loader2, Building2 } from 'lucide-react';
+import { Mail, MapPin, Globe2, Send, CheckCircle2, Loader2, Building2 } from 'lucide-react';
 import { IMAGES, srcSet } from '@/lib/images';
 import { supabase } from '@/lib/supabase';
 import SEO from '@/components/SEO';
@@ -104,7 +104,7 @@ export default function Contact() {
         setStatus('error');
         setErrorRef(out.code || `api ${res.status}`);
         setErrorMsg(
-          out.code === 'INVALID_FIELDS' ? 'Please check your details: name, company, country, a valid email and a message are required.'
+          out.code === 'INVALID_FIELDS' ? 'Please check your details: name, company, country, phone number, a valid email and a message are required.'
           : out.code === 'NO_CONSENT' ? 'Please agree to be contacted regarding your enquiry.'
           : fallbackMsg,
         );
@@ -308,6 +308,7 @@ export default function Contact() {
                       <input
                         type="tel"
                         name="phone"
+                        required
                         value={form.phone}
                         onChange={handleChange}
                         className={inputClass}
