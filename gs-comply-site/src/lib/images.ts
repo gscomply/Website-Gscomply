@@ -73,6 +73,11 @@ export const IMAGES = {
   globe2: P('7411941'),
 };
 
+/** srcset for a Pexels URL: lets phones download a small file instead of the 1600px one. */
+export function srcSet(url: string, widths: number[] = [400, 640, 960, 1280, 1600]): string {
+  return widths.map((w) => `${url.replace(/([?&])w=\d+/, `$1w=${w}`)} ${w}w`).join(', ');
+}
+
 export function pexelsUrl(photoId: string, width = 1600): string {
   return `https://images.pexels.com/photos/${photoId}/pexels-photo-${photoId}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
 }

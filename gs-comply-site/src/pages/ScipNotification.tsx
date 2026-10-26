@@ -10,7 +10,7 @@ import {
   CheckCircle2,
   Info,
 } from 'lucide-react';
-import { IMAGES } from '@/lib/images';
+import { IMAGES, srcSet } from '@/lib/images';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import SEO from '@/components/SEO';
@@ -104,6 +104,8 @@ export default function ScipNotification() {
                 loading="lazy"
                 decoding="async"
                 src={IMAGES.scipDocs}
+                srcSet={srcSet(IMAGES.scipDocs)}
+                sizes="(min-width: 1024px) 25vw, 50vw"
                 alt="Regulatory documents being reviewed and signed"
                 width={800}
                 height={1000}
@@ -113,6 +115,8 @@ export default function ScipNotification() {
                 loading="lazy"
                 decoding="async"
                 src={IMAGES.scipProduction}
+                srcSet={srcSet(IMAGES.scipProduction)}
+                sizes="(min-width: 1024px) 25vw, 50vw"
                 alt="Manufacturing line producing articles for the EU market"
                 width={800}
                 height={1000}
@@ -169,6 +173,8 @@ export default function ScipNotification() {
                 loading="lazy"
                 decoding="async"
                 src={IMAGES.scipMaterials}
+                srcSet={srcSet(IMAGES.scipMaterials)}
+                sizes="(min-width: 1024px) 40vw, 100vw"
                 alt="Electronic components and materials reviewed for substance data"
                 width={1200}
                 height={800}

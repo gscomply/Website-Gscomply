@@ -173,7 +173,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px] lg:h-20 gap-4">
           <Link to="/" className="flex items-center shrink-0" aria-label="GS Comply Solutions home">
-            <img src="/logo.png" alt="GS Comply Solutions" width={198} height={49} className="h-10 lg:h-[46px] w-auto" />
+            <img src="/logo-400.webp" alt="GS Comply Solutions" width={400} height={99} className="h-10 lg:h-[46px] w-auto" />
           </Link>
 
           {/* desktop navigation */}

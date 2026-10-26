@@ -40,7 +40,7 @@ export default function LegalPage({
               <ol className="space-y-2">
                 {sections.map((s, i) => (
                   <li key={s.id}>
-                    <a href={`#${s.id}`} className="block text-[13px] text-gray-600 hover:text-[#1A6B3C] leading-snug">
+                    <a href={`#${s.id}`} className="block py-1.5 text-[13px] text-gray-600 hover:text-[#1A6B3C] leading-snug">
                       {i + 1}. {s.title}
                     </a>
                   </li>

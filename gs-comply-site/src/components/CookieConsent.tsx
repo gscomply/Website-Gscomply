@@ -44,7 +44,7 @@ export default function CookieConsent() {
     <div
       role="dialog"
       aria-labelledby={titleId}
-      className="fixed bottom-0 left-0 right-0 z-[100] bg-gray-950 border-t border-gray-800 p-4 sm:p-6"
+      className="fixed bottom-0 left-0 right-0 z-[100] bg-gray-950 border-t border-gray-800 p-3 sm:p-6 max-h-[90vh] overflow-y-auto"
     >
       <div className="max-w-7xl mx-auto">
         {!managing ? (
@@ -53,18 +53,18 @@ export default function CookieConsent() {
               <Cookie className="w-5 h-5 text-[#4ade80] shrink-0 mt-0.5" aria-hidden="true" />
               <div>
                 <p id={titleId} className="text-sm font-semibold text-white">Your privacy choices</p>
-                <p className="text-sm text-gray-300 leading-relaxed mt-1">
+                <p className="text-[13px] sm:text-sm text-gray-300 leading-snug sm:leading-relaxed mt-1">
                   We use essential storage to make this site work. With your permission we also use analytics cookies
                   (Google) to understand how the site is used. Nothing optional is loaded unless you accept. See our{' '}
                   <Link to="/privacy-policy" className="text-[#4ade80] underline hover:text-[#22c55e]">Privacy Policy</Link>.
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3 shrink-0">
               <button
                 type="button"
                 onClick={() => { setAnalytics(false); setManaging(true); }}
-                className="px-3 py-2.5 text-sm font-medium text-gray-300 underline underline-offset-2 hover:text-white"
+                className="col-span-2 order-last sm:order-none px-3 py-2.5 text-sm font-medium text-gray-300 underline underline-offset-2 hover:text-white"
               >
                 Manage preferences
               </button>

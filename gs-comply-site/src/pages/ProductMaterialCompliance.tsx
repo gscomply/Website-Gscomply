@@ -84,7 +84,7 @@ export default function ProductMaterialCompliance() {
                   <li key={t} className="flex gap-2"><span aria-hidden="true">•</span>{t}</li>
                 ))}
               </ul>
-              <a href="#support" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:gap-2.5 transition-all">
+              <a href="#support" className="mt-2 py-2 inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:gap-2.5 transition-all">
                 See all support <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>

@@ -12,7 +12,7 @@ import {
   Droplets,
   Wind,
 } from 'lucide-react';
-import { IMAGES } from '@/lib/images';
+import { IMAGES, srcSet } from '@/lib/images';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import SEO from '@/components/SEO';
@@ -61,6 +61,8 @@ export default function Sustainability() {
             <div className="relative">
               <img loading="lazy" decoding="async"
                 src={IMAGES.windTurbines3}
+                srcSet={srcSet(IMAGES.windTurbines3)}
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 alt="Renewable energy and sustainability"
                 className="rounded-2xl shadow-xl w-full object-cover h-[400px]"
               />

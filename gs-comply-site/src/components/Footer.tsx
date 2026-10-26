@@ -79,7 +79,11 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center mb-5">
               <img
-                src="/logo.png"
+                src="/logo-400.webp"
+                width={400}
+                height={99}
+                loading="lazy"
+                decoding="async"
                 alt="GS Comply Solutions logo"
                 className="h-12 w-auto object-contain"
               />

@@ -9,7 +9,7 @@ import {
   Leaf,
   CheckCircle2,
 } from 'lucide-react';
-import { IMAGES } from '@/lib/images';
+import { IMAGES, srcSet } from '@/lib/images';
 import PageHero from '@/components/PageHero';
 import CTABanner from '@/components/CTABanner';
 import SEO from '@/components/SEO';
@@ -68,6 +68,8 @@ export default function TrainingServices() {
               loading="lazy"
               decoding="async"
               src={IMAGES.engineerReviewing}
+              srcSet={srcSet(IMAGES.engineerReviewing)}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               alt="Team reviewing compliance documents during a training session"
               width={1200}
               height={800}

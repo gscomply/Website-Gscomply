@@ -1,8 +1,6 @@
 import { lazy, Suspense, type ReactNode } from 'react';
 import { Outlet, type RouteObject } from 'react-router-dom';
 import Layout from '@/components/Layout';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import { AuthProvider } from '@/lib/auth';
 import { Loader2 } from 'lucide-react';
 import { BLOG_ENABLED } from '@/config/features';
 
@@ -22,6 +20,10 @@ const Contact = lazy(() => import('@/pages/Contact'));
 const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('@/pages/TermsOfService'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
+// Auth (and the Supabase client it uses) is only needed by the admin area, so it is loaded lazily and
+// public visitors never download it.
+const AdminAuthLayout = lazy(() => import('@/components/admin/AdminAuthLayout'));
+const AdminGate = lazy(() => import('@/components/admin/AdminGate'));
 const AdminLogin = lazy(() => import('@/pages/admin/AdminLogin'));
 const AdminPostList = lazy(() => import('@/pages/admin/AdminPostList'));
 const AdminPostEditor = lazy(() => import('@/pages/admin/AdminPostEditor'));
@@ -38,11 +40,7 @@ function PageLoader() {
 const S = ({ children }: { children: ReactNode }) => <Suspense fallback={<PageLoader />}>{children}</Suspense>;
 
 function Root() {
-  return (
-    <AuthProvider>
-      <Outlet />
-    </AuthProvider>
-  );
+  return <Outlet />;
 }
 
 // Shared by the browser (App.tsx) and the build-time prerenderer (entry-server.tsx).
@@ -77,7 +75,7 @@ export const routes: RouteObject[] = [
           { path: '/contact', element: <S><Contact /></S> },
           // Real public layout, fed by the editor's unsaved draft. Admin only.
           ...(BLOG_ENABLED
-            ? [{ path: '/admin/preview', element: <ProtectedRoute><S><AdminPostPreview /></S></ProtectedRoute> }]
+            ? [{ path: '/admin/preview', element: <S><AdminGate><S><AdminPostPreview /></S></AdminGate></S> }]
             : []),
           { path: '*', element: <S><NotFound /></S> },
         ],
@@ -85,9 +83,14 @@ export const routes: RouteObject[] = [
       // Admin area: no public header/footer. Not registered at all while the blog is switched off.
       ...(BLOG_ENABLED
         ? [
-            { path: '/admin/login', element: <S><AdminLogin /></S> },
-            { path: '/admin', element: <ProtectedRoute><S><AdminPostList /></S></ProtectedRoute> },
-            { path: '/admin/editor/:id', element: <ProtectedRoute><S><AdminPostEditor /></S></ProtectedRoute> },
+            {
+              element: <S><AdminAuthLayout /></S>,
+              children: [
+                { path: '/admin/login', element: <S><AdminLogin /></S> },
+                { path: '/admin', element: <S><AdminGate withAuth={false}><S><AdminPostList /></S></AdminGate></S> },
+                { path: '/admin/editor/:id', element: <S><AdminGate withAuth={false}><S><AdminPostEditor /></S></AdminGate></S> },
+              ],
+            },
           ]
         : []),
     ],

@@ -63,7 +63,7 @@ export default function Services() {
                   <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">{cat.title}</h2>
                   <p className="mt-2 text-gray-600">{cat.intro}</p>
                   {cat.path && (
-                    <Link to={cat.path} className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A6B3C] hover:gap-2.5 transition-all">
+                    <Link to={cat.path} className="mt-2 py-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A6B3C] hover:gap-2.5 transition-all">
                       {cat.allLabel} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </Link>
                   )}
@@ -89,7 +89,7 @@ export default function Services() {
                           <p className="text-xs text-gray-500 leading-relaxed">{service.who}</p>
                         </div>
                         {service.path && (
-                          <Link to={service.path} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A6B3C] hover:gap-2.5 transition-all">
+                          <Link to={service.path} className="mt-3 py-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1A6B3C] hover:gap-2.5 transition-all">
                             Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
                           </Link>
                         )}

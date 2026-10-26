@@ -25,7 +25,7 @@ import {
 import SEO from '@/components/SEO';
 import CTABanner from '@/components/CTABanner';
 import { credentials, company } from '@/data/company';
-import { IMAGES } from '@/lib/images';
+import { IMAGES, srcSet } from '@/lib/images';
 
 const trustStrip = [
   { icon: PackageCheck, label: 'Product Compliance' },
@@ -159,25 +159,17 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="hidden lg:flex justify-end">
+            <div className="flex justify-center lg:justify-end">
               <img {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async"
                 src={IMAGES.engineDetail}
+                srcSet={srcSet(IMAGES.engineDetail)}
+                sizes="(min-width: 1024px) 512px, 100vw"
                 alt="Automotive engine components representing the type of products GS Comply helps manufacturers certify for compliance"
                 width={500}
                 height={400}
-                className="w-full max-w-lg rounded-2xl shadow-2xl object-cover h-[400px]"
+                className="w-full max-w-lg rounded-2xl shadow-2xl object-cover h-[260px] sm:h-[320px] lg:h-[400px]"
               />
             </div>
-          </div>
-          {/* Show hero image below text on mobile */}
-          <div className="lg:hidden mt-8">
-            <img loading="lazy" decoding="async"
-              src={IMAGES.engineDetail}
-              alt="Automotive engine components representing the type of products GS Comply helps manufacturers certify for compliance"
-              width={500}
-              height={400}
-              className="w-full max-w-lg mx-auto rounded-2xl shadow-2xl object-cover h-[300px]"
-            />
           </div>
         </div>
       </section>
@@ -194,7 +186,7 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-[#1A6B3C] transition-colors">
                   <item.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
                 </div>
-                <span className="text-[11px] font-medium text-gray-400 leading-tight">
+                <span className="text-xs font-medium text-gray-400 leading-tight">
                   {item.label}
                 </span>
               </div>
@@ -243,7 +235,7 @@ export default function Home() {
               </p>
               <Link
                 to="/about"
-                className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#1A6B3C] hover:gap-3 transition-all"
+                className="mt-5 py-2 inline-flex items-center gap-2 text-sm font-semibold text-[#1A6B3C] hover:gap-3 transition-all"
               >
                 Learn More About GS Comply
                 <ArrowRight className="w-4 h-4" />
@@ -385,6 +377,8 @@ export default function Home() {
             <div className="flex justify-center">
               <img
                 src={IMAGES.engineGears}
+                srcSet={srcSet(IMAGES.engineGears)}
+                sizes="(min-width: 1024px) 512px, 100vw"
                 alt="Close-up view of a modern car engine showing gears and mechanical components, representing the detailed material data managed in IMDS"
                 width={600}
                 height={500}
@@ -528,6 +522,8 @@ export default function Home() {
             <div className="flex justify-center">
               <img
                 src={IMAGES.shippingPort}
+                srcSet={srcSet(IMAGES.shippingPort)}
+                sizes="(min-width: 1024px) 512px, 100vw"
                 alt="Aerial view of a busy shipping port with stacked cargo containers and cranes, representing global supply chain coverage"
                 width={600}
                 height={400}

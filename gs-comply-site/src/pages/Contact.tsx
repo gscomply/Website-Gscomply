@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { company as site } from '@/data/company';
 import { Mail, MapPin, Phone, Globe2, Send, CheckCircle2, Loader2, Building2 } from 'lucide-react';
-import { IMAGES } from '@/lib/images';
+import { IMAGES, srcSet } from '@/lib/images';
 import { supabase } from '@/lib/supabase';
 import SEO from '@/components/SEO';
 
@@ -120,7 +120,7 @@ export default function Contact() {
       {/* Hero */}
       <section className="relative pt-28 lg:pt-36 pb-16 lg:pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async" src={IMAGES.handshake2} alt="" className="w-full h-full object-cover" />
+          <img {...({ fetchpriority: "high" } as Record<string, string>)} decoding="async" src={IMAGES.handshake2} srcSet={srcSet(IMAGES.handshake2)} sizes="100vw" alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/85 to-gray-950/50" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
