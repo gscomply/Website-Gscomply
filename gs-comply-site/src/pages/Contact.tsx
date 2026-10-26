@@ -183,8 +183,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Email</p>
-                      <a href="mailto:info@gscomply.com" className="text-sm text-gray-700 hover:text-[#1A6B3C] transition-colors">
-                        info@gscomply.com
+                      <a href="mailto:contact@gscomply.com" className="text-sm text-gray-700 hover:text-[#1A6B3C] transition-colors">
+                        contact@gscomply.com
                       </a>
                     </div>
                   </div>
