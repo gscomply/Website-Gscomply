@@ -32,7 +32,7 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
         <div className="grid grid-cols-[320px_minmax(0,1fr)] min-h-[420px]">
           {/* left: categories */}
           <div className="py-8 pr-6 border-r border-gray-200 flex flex-col">
-            <p className="text-[13px] font-semibold text-slate-500 uppercase tracking-wider mb-5">{menu.heading}</p>
+            <p className="text-[12px] font-semibold text-slate-500 uppercase tracking-wider mb-4">{menu.heading}</p>
             <ul className="space-y-2">
               {menu.categories.map((cat, i) => {
                 const active = i === activeCat;
@@ -49,10 +49,10 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
                       }`}
                     >
                       <span className="min-w-0">
-                        <span className={`block text-[15.5px] font-semibold leading-snug ${active ? 'text-[#1A6B3C]' : 'text-gray-900'}`}>
+                        <span className={`block text-[14.5px] font-semibold leading-snug ${active ? 'text-[#1A6B3C]' : 'text-gray-900'}`}>
                           {cat.title}
                         </span>
-                        <span className="block text-[13.5px] text-slate-500 leading-snug mt-1">{cat.description}</span>
+                        <span className="block text-[12.5px] text-slate-500 leading-snug mt-0.5">{cat.description}</span>
                       </span>
                       <ChevronRight className={`w-4 h-4 shrink-0 ${active ? 'text-[#1A6B3C]' : 'text-slate-400'}`} aria-hidden="true" />
                     </button>
@@ -62,7 +62,7 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
             </ul>
             <div className="mt-auto pt-6">
               <div className="border-t border-gray-200 pt-5">
-                <Link to={menu.footer.path} className="inline-flex items-center gap-2 text-[14.5px] font-semibold text-[#1A6B3C] hover:gap-3 transition-all">
+                <Link to={menu.footer.path} className="inline-flex items-center gap-2 text-[13.5px] font-semibold text-[#1A6B3C] hover:gap-3 transition-all">
                   {menu.footer.label}
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
@@ -75,8 +75,8 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
             {menu.categories.map((cat, i) => (
               <div key={cat.title} hidden={i !== activeCat}>
                 <div className="flex items-center justify-between gap-6">
-                  <h3 className="text-[18px] font-semibold text-gray-900">{cat.title}</h3>
-                  <Link to={cat.path} className="inline-flex items-center gap-1 text-[14.5px] font-semibold text-[#1A6B3C] hover:underline">
+                  <h3 className="text-[16.5px] font-semibold text-gray-900">{cat.title}</h3>
+                  <Link to={cat.path} className="inline-flex items-center gap-1 text-[13.5px] font-semibold text-[#1A6B3C] hover:underline">
                     {cat.allLabel}
                     <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
                   </Link>
@@ -85,7 +85,7 @@ function DesktopPanel({ item, menu, open }: { item: NavItem; menu: NavMenu; open
                   {cat.items.map((leaf) => (
                     <li key={leaf.label} className="flex items-start gap-3">
                       <Bullet />
-                      <Link to={leaf.path} className="text-[17px] text-gray-800 hover:text-[#1A6B3C] leading-snug transition-colors">
+                      <Link to={leaf.path} className="text-[15px] text-gray-800 hover:text-[#1A6B3C] leading-snug transition-colors">
                         {leaf.label}
                       </Link>
                     </li>
@@ -182,7 +182,7 @@ export default function Header() {
               {visibleNavigation.map((item) => {
                 const active = isActive(location.pathname, item);
                 const open = openMenu === item.label;
-                const cls = `inline-flex items-center gap-1.5 px-3.5 py-2 text-[16px] font-medium rounded-md transition-colors whitespace-nowrap ${
+                const cls = `inline-flex items-center gap-1.5 px-3 py-2 text-[14.5px] font-medium rounded-md transition-colors whitespace-nowrap ${
                   active || open ? 'text-[#1A6B3C]' : 'text-gray-900 hover:text-[#1A6B3C]'
                 }`;
 
@@ -230,14 +230,14 @@ export default function Header() {
               href={company.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden xl:inline-flex items-center gap-2 px-5 py-3 text-[16px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
+              className="hidden xl:inline-flex items-center gap-2 px-4 py-2.5 text-[14px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
             >
               <Calendar className="w-4 h-4" aria-hidden="true" />
               Book a 30-min Call
             </a>
             <Link
               to="/contact"
-              className="hidden sm:inline-flex items-center px-6 py-3 bg-[#1A6B3C] text-white text-[16px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
+              className="hidden sm:inline-flex items-center px-5 py-2.5 bg-[#1A6B3C] text-white text-[14px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
             >
               Get a Free Consultation
             </Link>
@@ -303,7 +303,7 @@ export default function Header() {
                                   className="w-full flex items-center justify-between gap-3 py-2.5 text-left"
                                 >
                                   <span>
-                                    <span className={`block text-[15px] font-semibold ${catOpen ? 'text-[#1A6B3C]' : 'text-gray-900'}`}>{cat.title}</span>
+                                    <span className={`block text-[14.5px] font-semibold ${catOpen ? 'text-[#1A6B3C]' : 'text-gray-900'}`}>{cat.title}</span>
                                     <span className="block text-xs text-slate-500 mt-0.5">{cat.description}</span>
                                   </span>
                                   <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${catOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
@@ -312,7 +312,7 @@ export default function Header() {
                                   <ul className="pl-3 pb-2">
                                     {cat.items.map((leaf) => (
                                       <li key={leaf.label}>
-                                        <Link to={leaf.path} className="block py-1.5 text-[14.5px] text-gray-700">{leaf.label}</Link>
+                                        <Link to={leaf.path} className="block py-2 text-[14px] text-gray-700">{leaf.label}</Link>
                                       </li>
                                     ))}
                                   </ul>
