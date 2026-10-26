@@ -16,7 +16,7 @@ const emailFrom = (v: unknown, fallback: string): string => clean(v).replace(/^m
 export const company = {
   name: 'GS Comply Solutions',
   domain: urlFrom(import.meta.env.VITE_SITE_URL, 'https://gscomply.com'),
-  email: emailFrom(import.meta.env.VITE_CONTACT_EMAIL, 'info@gscomply.com'),
+  email: emailFrom(import.meta.env.VITE_CONTACT_EMAIL, 'contact@gscomply.com'),
   // TODO: Replace with real city and country
   city: 'Chennai',
   country: 'India',
@@ -24,7 +24,7 @@ export const company = {
   workingHours: 'Mon to Fri, 8:00 to 18:00 CET (covers EU morning and US East overlap)',
   linkedinUrl: urlFrom(import.meta.env.VITE_LINKEDIN_URL, 'https://www.linkedin.com/company/gs-comply-solutions'),
   calendlyUrl: urlFrom(import.meta.env.VITE_CALENDLY_URL, 'https://calendly.com/gscomply/30min'),
-  notificationEmail: emailFrom(import.meta.env.VITE_CONTACT_EMAIL, 'info@gscomply.com'),
+  notificationEmail: emailFrom(import.meta.env.VITE_CONTACT_EMAIL, 'contact@gscomply.com'),
 };
 
 // ============================================================
