@@ -3,18 +3,28 @@
 // TODO: Replace placeholder values with real data
 // ============================================================
 
+// Environment values are cleaned up so a small typo in Vercel cannot break links: surrounding quotes and spaces are
+// removed, and a missing "https://" is added (without it the browser treats the link as a page on this site).
+const clean = (v: unknown): string => (typeof v === 'string' ? v.trim().replace(/^["']+|["']+$/g, '').trim() : '');
+const urlFrom = (v: unknown, fallback: string): string => {
+  const c = clean(v);
+  if (!c) return fallback;
+  return (/^https?:\/\//i.test(c) ? c : `https://${c.replace(/^\/+/, '')}`).replace(/\/+$/, '');
+};
+const emailFrom = (v: unknown, fallback: string): string => clean(v).replace(/^mailto:/i, '') || fallback;
+
 export const company = {
   name: 'GS Comply Solutions',
-  domain: import.meta.env.VITE_SITE_URL || 'https://gscomply.com',
-  email: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
+  domain: urlFrom(import.meta.env.VITE_SITE_URL, 'https://gscomply.com'),
+  email: emailFrom(import.meta.env.VITE_CONTACT_EMAIL, 'info@gscomply.com'),
   // TODO: Replace with real city and country
   city: 'Chennai',
   country: 'India',
   // TODO: Replace with real working hours and time zone coverage
   workingHours: 'Mon to Fri, 8:00 to 18:00 CET (covers EU morning and US East overlap)',
-  linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || 'https://www.linkedin.com/company/gs-comply-solutions',
-  calendlyUrl: import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/gscomply/30min',
-  notificationEmail: import.meta.env.VITE_CONTACT_EMAIL || 'info@gscomply.com',
+  linkedinUrl: urlFrom(import.meta.env.VITE_LINKEDIN_URL, 'https://www.linkedin.com/company/gs-comply-solutions'),
+  calendlyUrl: urlFrom(import.meta.env.VITE_CALENDLY_URL, 'https://calendly.com/gscomply/30min'),
+  notificationEmail: emailFrom(import.meta.env.VITE_CONTACT_EMAIL, 'info@gscomply.com'),
 };
 
 // ============================================================

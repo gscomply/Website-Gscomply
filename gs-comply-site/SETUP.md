@@ -118,3 +118,28 @@ You must do (these cannot be done in code):
 4. **Google Business Profile** and consistent company name/address/phone everywhere (also fill the `[City]`/`[Country]` placeholders in `src/data/company.ts`).
 5. Publish useful content regularly (enable the blog), get links from industry sites, directories, LinkedIn, partners and customers.
 6. Replace remaining placeholders (team names/photos, credentials) with real data. Thin or placeholder content ranks poorly.
+
+## 13. Contact form and "Book a 30-min Call" (read this if either stops working)
+**Environment variables only reach the website when it is BUILT.** After adding or editing any variable in
+Vercel > Settings > Environment Variables you must **redeploy** (Deployments > the latest one > ⋯ > Redeploy,
+and untick "Use existing Build Cache"). Editing a variable alone changes nothing on the live site.
+
+| Variable | Used for |
+|---|---|
+| `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | saving enquiries (required) |
+| `RESEND_API_KEY` | the notification email (without it the enquiry is still saved, just no email) |
+| `CONTACT_NOTIFICATION_EMAIL` | where notifications go (default `VITE_CONTACT_EMAIL`, then info.gscomply@gmail.com) |
+| `CONTACT_FROM_EMAIL` | sender, e.g. `GS Comply Website <enquiries@gscomply.com>` (needs a domain verified in Resend) |
+| `VITE_CALENDLY_URL` | the "Book a 30-min Call" buttons, e.g. `https://calendly.com/your-name/30min` |
+
+**Quick health check:** open `https://YOUR-DOMAIN/api/contact?check=1`. It lists which settings are present and whether the
+`enquiries` table is reachable (no secret values are shown). `database: "table_missing"` means run
+`supabase/migrations/20260923060206_create_enquiries_table.sql` in Supabase > SQL Editor.
+
+Notes
+- The form posts to `/api/contact` (a Vercel function). Errors are written to Vercel > project > Logs, lines start with `[contact]`.
+- Resend's default sender `onboarding@resend.dev` can only deliver to the email address of your own Resend account.
+  To email any other address, verify your domain in Resend and set `CONTACT_FROM_EMAIL`.
+- Every enquiry is also stored in Supabase > Table Editor > `enquiries`, so none are lost if an email fails.
+- Booking-link typos are tolerated (quotes, a missing `https://`, a trailing `/` are fixed automatically), but the
+  link itself must be your real Calendly page.

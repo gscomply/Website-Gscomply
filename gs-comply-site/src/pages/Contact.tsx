@@ -43,6 +43,7 @@ export default function Contact() {
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [honeypot, setHoneypot] = useState(''); // hidden anti-spam field: real visitors never fill it
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -61,49 +62,72 @@ export default function Contact() {
     }
     setStatus('submitting');
     setErrorMsg('');
-    try {
-      const { error } = await supabase.from('enquiries').insert({
-        full_name: form.full_name,
-        email: form.email,
-        company: form.company,
-        country: form.country,
-        message: form.message,
-        phone: form.phone || null,
-        job_title: form.job_title || null,
-        industry: form.industry || null,
-        service_required: form.service_required || null,
-        consent: form.consent,
-      });
-      if (error) throw error;
-
-      const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-enquiry-notification`;
-      await fetch(functionUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify({
-          full_name: form.full_name,
-          email: form.email,
-          company: form.company,
-          country: form.country,
-          message: form.message,
-          phone: form.phone || null,
-          job_title: form.job_title || null,
-          industry: form.industry || null,
-          service_required: form.service_required || null,
-        }),
-      }).catch(() => null);
-
+    const fallbackMsg = `Something went wrong. Please try again or email us directly at ${site.email}.`;
+    const payload = {
+      full_name: form.full_name.trim(),
+      email: form.email.trim(),
+      company: form.company.trim(),
+      country: form.country,
+      message: form.message.trim(),
+      phone: form.phone.trim() || null,
+      job_title: form.job_title.trim() || null,
+      industry: form.industry || null,
+      service_required: form.service_required || null,
+      consent: form.consent,
+      website: honeypot,
+    };
+    const reset = () => {
       setStatus('success');
       setForm({
         full_name: '', email: '', company: '', country: '', message: '',
         phone: '', job_title: '', industry: '', service_required: '', consent: false,
       });
-    } catch (err) {
-      setStatus('error');
-      setErrorMsg('Something went wrong. Please try again or email us directly at info@gscomply.com.');
+    };
+
+    // 1) Main route: our own server function (/api/contact). It saves the enquiry and sends the notification email.
+    let apiAvailable = true;
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.status === 404 || res.status === 405) {
+        apiAvailable = false; // host without the function (e.g. local preview): use the direct route below
+      } else {
+        const out = await res.json().catch(() => ({} as { ok?: boolean; code?: string }));
+        if (res.ok && out.ok) return reset();
+        setStatus('error');
+        setErrorMsg(
+          out.code === 'INVALID_FIELDS' ? 'Please check the highlighted details: name, company, country, a valid email and a message are required.'
+          : out.code === 'NO_CONSENT' ? 'Please agree to be contacted regarding your enquiry.'
+          : fallbackMsg,
+        );
+        return;
+      }
+    } catch {
+      apiAvailable = false;
+    }
+
+    // 2) Fallback route: save straight to Supabase from the browser, then call the Supabase email function.
+    if (!apiAvailable) {
+      try {
+        const { error } = await supabase.from('enquiries').insert({
+          full_name: payload.full_name, email: payload.email, company: payload.company, country: payload.country,
+          message: payload.message, phone: payload.phone, job_title: payload.job_title, industry: payload.industry,
+          service_required: payload.service_required, consent: payload.consent,
+        });
+        if (error) throw error;
+        fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-enquiry-notification`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}` },
+          body: JSON.stringify(payload),
+        }).catch(() => null);
+        reset();
+      } catch {
+        setStatus('error');
+        setErrorMsg(fallbackMsg);
+      }
     }
   };
 
@@ -205,6 +229,9 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="p-7 lg:p-8 rounded-xl bg-white border border-gray-100">
+                  <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                    <label>Leave this field empty<input type="text" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} /></label>
+                  </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-6">Enquiry Form</h3>
                   {status === 'error' && (
                     <div className="mb-5 p-4 rounded-lg bg-red-50 border border-red-200">
