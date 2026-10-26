@@ -42,3 +42,11 @@ ALTER TABLE enquiries ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "anon_insert_enquiries" ON enquiries;
 CREATE POLICY "anon_insert_enquiries" ON enquiries FOR INSERT
 TO anon, authenticated WITH CHECK (true);
+
+-- Make sure the public roles may insert (some Supabase projects no longer grant this automatically)
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT INSERT ON TABLE enquiries TO anon, authenticated;
+GRANT ALL ON TABLE enquiries TO service_role;
+
+-- Tell Supabase's API to pick up the new table immediately (fixes "table missing" right after creating it)
+NOTIFY pgrst, 'reload schema';

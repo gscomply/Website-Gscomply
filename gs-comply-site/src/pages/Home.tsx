@@ -4,7 +4,6 @@ import {
   Calendar,
   PackageCheck,
   Layers,
-  ScrollText,
   Leaf,
   Truck,
   Database,
@@ -21,19 +20,22 @@ import {
   Award,
   Briefcase,
   BookOpen,
+  Lightbulb,
+  Handshake,
 } from 'lucide-react';
 import SEO from '@/components/SEO';
 import CTABanner from '@/components/CTABanner';
 import { credentials, company } from '@/data/company';
 import { IMAGES, srcSet } from '@/lib/images';
 
-const trustStrip = [
-  { icon: PackageCheck, label: 'Product Compliance' },
-  { icon: Layers, label: 'Material Compliance' },
-  { icon: ScrollText, label: 'Regulatory Compliance' },
-  { icon: Leaf, label: 'Environmental Compliance' },
-  { icon: Truck, label: 'Supply Chain Compliance' },
-  { icon: Globe2, label: 'Sustainability Services' },
+const whyPartner = [
+  { icon: ShieldCheck, title: 'Proven Expertise', desc: 'Deep industry knowledge and global experience' },
+  { icon: Users, title: 'Trusted by Industry', desc: 'Long-term partnerships built on reliability' },
+  { icon: Lightbulb, title: 'Smart & Efficient', desc: 'Streamlined processes for better outcomes' },
+  { icon: Settings, title: 'Customized Approach', desc: 'Solutions designed for your unique needs' },
+  { icon: Globe2, title: 'Global Reach', desc: 'Supporting businesses across borders' },
+  { icon: Handshake, title: 'Integrity Always', desc: 'Transparent, ethical and dependable' },
+  { icon: TrendingUp, title: 'Long-Term Value', desc: 'Your success is our priority' },
 ];
 
 const aboutHighlights = [
@@ -174,24 +176,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUST STRIP */}
-      <section className="bg-gray-950 py-8 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold text-gray-500 uppercase tracking-wider mb-6">
-            Supporting manufacturers across global supply chains
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {trustStrip.map((item) => (
-              <div key={item.label} className="flex flex-col items-center gap-2 text-center group">
-                <div className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center group-hover:bg-[#1A6B3C] transition-colors">
-                  <item.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                </div>
-                <span className="text-xs font-medium text-gray-400 leading-tight">
-                  {item.label}
-                </span>
-              </div>
-            ))}
+      {/* WHY PARTNER WITH GS COMPLY */}
+      <section
+        aria-labelledby="why-partner-heading"
+        className="relative overflow-hidden py-14 lg:py-16 bg-gradient-to-br from-[#0b3b24] via-[#06231a] to-[#04150f]"
+      >
+        {/* faint dotted "world map" glow, top right */}
+        <div
+          aria-hidden="true"
+          className="absolute -right-10 -top-10 w-[55%] h-[70%] opacity-[0.16] pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #86efac 1px, transparent 1.4px)',
+            backgroundSize: '9px 9px',
+            WebkitMaskImage: 'radial-gradient(ellipse at 70% 40%, #000 0%, transparent 70%)',
+            maskImage: 'radial-gradient(ellipse at 70% 40%, #000 0%, transparent 70%)',
+          }}
+        />
+        {/* soft green glow, top left */}
+        <div aria-hidden="true" className="absolute -left-24 -top-24 w-[420px] h-[420px] rounded-full bg-[#1A6B3C]/30 blur-3xl pointer-events-none" />
+        {/* flowing wave lines, bottom */}
+        <svg aria-hidden="true" className="absolute inset-x-0 bottom-0 w-full h-24 pointer-events-none" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none">
+          <path d="M0 95 C 250 20, 480 20, 760 75 S 1220 110, 1440 40" stroke="#34d399" strokeOpacity="0.28" strokeWidth="1.2" />
+          <path d="M0 110 C 300 60, 560 50, 820 95 S 1250 115, 1440 70" stroke="#34d399" strokeOpacity="0.18" strokeWidth="1" />
+        </svg>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-4">
+              <span className="hidden sm:block h-px w-16 bg-[#4ade80]/60" />
+              <p className="text-xs sm:text-sm font-semibold text-[#4ade80] uppercase tracking-[0.2em]">
+                Why Partner with GS Comply Solutions
+              </p>
+              <span className="hidden sm:block h-px w-16 bg-[#4ade80]/60" />
+            </div>
+            <h2 id="why-partner-heading" className="mt-5 text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
+              Your Trusted Partner for a
+              <span className="block text-[#4ade80]">Safer, Compliant &amp; Sustainable Tomorrow</span>
+            </h2>
+            <p className="mt-4 text-sm lg:text-base text-gray-300">
+              Built on experience. Driven by expertise. Focused on your success.
+            </p>
           </div>
+
+          <ul className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-y-10">
+            {whyPartner.map((item) => (
+              <li
+                key={item.title}
+                className="flex flex-col items-center text-center px-3 lg:border-l lg:border-[#4ade80]/15 lg:first:border-l-0"
+              >
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-b from-[#1f8a4f] to-[#0f4d2c] border border-white/10 shadow-lg shadow-black/30 flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-white" strokeWidth={1.6} />
+                </div>
+                <h3 className="mt-4 text-sm font-semibold text-white leading-tight">{item.title}</h3>
+                <p className="mt-1.5 text-xs text-gray-400 leading-relaxed max-w-[150px]">{item.desc}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
