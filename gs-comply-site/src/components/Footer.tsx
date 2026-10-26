@@ -14,13 +14,14 @@ interface FooterGroup {
   links: FooterLink[];
 }
 
-// Services column: one category heading with its pages indented underneath.
-const serviceCategory = {
+const servicesGroup: FooterGroup = {
   title: 'Services',
   links: [
-    {label: 'Product & Material Compliance', path: '/product-material-compliance'},
-    { label: 'SCIP Notification ', path: '/scip-notification-services' },
-  ] ,
+    { label: 'Product & Material Compliance', path: '/product-material-compliance' },
+    { label: 'SCIP Notification Services', path: '/scip-notification-services' },
+    { label: 'IMDS & CDX Services', path: '/imds-cdx' },
+    { label: 'Training Services', path: '/training-services' },
+  ],
 };
 
 const linkCls = 'text-sm hover:text-white transition-colors flex items-center gap-1.5 group';
@@ -112,39 +113,7 @@ export default function Footer() {
 
           <SimpleColumn {...companyGroup} />
           <SimpleColumn {...expertiseGroup} />
-          <div>
-            <h4 className="text-xs font-semibold text-white uppercase tracking-wider mb-4">Services</h4>
-            <ul className="space-y-2.5">
-              <li>
-                <Link to={serviceCategory.path} className={`${linkCls} text-gray-200 font-medium`}>
-                  <Arrow />
-                  {serviceCategory.label}
-                </Link>
-                <ul className="mt-2.5 ml-3 pl-3 border-l border-gray-800 space-y-2.5">
-                  {serviceCategory.children.map((link) => (
-                    <li key={link.label}>
-                      <Link to={link.path} className={linkCls}>
-                        <Arrow />
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-              <li>
-                <Link to="/imds-cdx" className={`${linkCls} text-gray-200 font-medium`}>
-                  <Arrow />
-                  IMDS & CDX Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/training-services" className={`${linkCls} text-gray-200 font-medium`}>
-                  <Arrow />
-                  Training Services
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <SimpleColumn {...servicesGroup} />
 
           <SimpleColumn {...quickLinksGroup} />
         </div>
