@@ -182,7 +182,7 @@ export default function Header() {
               {visibleNavigation.map((item) => {
                 const active = isActive(location.pathname, item);
                 const open = openMenu === item.label;
-                const cls = `inline-flex items-center gap-1.5 px-3 py-2 text-[14.5px] font-medium rounded-md transition-colors whitespace-nowrap ${
+                const cls = `inline-flex items-center gap-1.5 px-2.5 py-2 text-[13.5px] font-medium rounded-md transition-colors whitespace-nowrap ${
                   active || open ? 'text-[#1A6B3C]' : 'text-gray-900 hover:text-[#1A6B3C]'
                 }`;
 
@@ -224,20 +224,20 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 lg:-mr-3 xl:-mr-6">
             {/* 30-minute call booking (link set in src/data/company.ts > calendlyUrl) */}
             <a
               href={company.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden xl:inline-flex items-center gap-2 px-4 py-2.5 text-[14px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
+              className="hidden xl:inline-flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
             >
               <Calendar className="w-4 h-4" aria-hidden="true" />
               Book a 30-min Call
             </a>
             <Link
               to="/contact"
-              className="hidden sm:inline-flex items-center px-5 py-2.5 bg-[#1A6B3C] text-white text-[14px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
+              className="hidden sm:inline-flex items-center px-4 py-2 bg-[#1A6B3C] text-white text-[13px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
             >
               Get a Free Consultation
             </Link>
