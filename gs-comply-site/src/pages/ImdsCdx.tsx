@@ -47,7 +47,7 @@ export default function ImdsCdx() {
     <>
       <SEO
         title={"IMDS & CDX Support: MDS Creation, Submission & Rejection Resolution"}
-        description="End-to-end IMDS and CDX support for suppliers: account setup, material data sheet (MDS) creation, submission, customer approval and rejection handling."
+        description="End-to-end IMDS, CDX and CAMDS support for suppliers: account setup, material data sheet (MDS) creation, submission, customer approval and rejection handling."
         path="/imds-cdx"
       />
       <PageHero
@@ -168,16 +168,57 @@ export default function ImdsCdx() {
       </section>
 
       {/* CAMDS */}
-      <section id="camds" className="scroll-mt-28 py-20 lg:py-24 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="text-xs font-semibold text-[#1A6B3C] uppercase tracking-wider">Also supported</span>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">CAMDS support</h2>
-          <p className="mt-5 text-base text-gray-600 leading-relaxed">
-            CAMDS (China Automotive Material Data System) is the material data platform used by Chinese automotive
-            customers. If you supply them, we help with access and account guidance, material data entry and structuring,
-            submission and customer approval follow-up, and rejection analysis and correction, using the same approach
-            as for IMDS and CDX.
-          </p>
+      <section id="camds" className="scroll-mt-28 py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <span className="text-xs font-semibold text-[#1A6B3C] uppercase tracking-wider">Also supported</span>
+            <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
+              CAMDS: China Automotive Material Data System
+            </h2>
+            <p className="mt-5 text-base text-gray-600 leading-relaxed">
+              CAMDS is the material data platform used in China's automotive industry, operated by CATARC (China
+              Automotive Technology and Research Center). Like IMDS, it collects material and substance data for vehicle
+              parts, and it supports China's end-of-life vehicle requirements, including restrictions on substances such as
+              lead, mercury, cadmium and hexavalent chromium.
+            </p>
+            <p className="mt-4 text-base text-gray-600 leading-relaxed">
+              If you supply parts to a Chinese vehicle manufacturer, or to a global OEM that builds vehicles in China,
+              you may be asked to submit your material data in CAMDS as well as, or instead of, IMDS. The data
+              you already hold for IMDS is a strong starting point, so we reuse it wherever we can.
+            </p>
+          </div>
+
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              { icon: Users, title: 'Access & account guidance', desc: 'Help getting access to the platform and setting up your supplier account and users.' },
+              { icon: Layers, title: 'Material data entry & structuring', desc: 'Structuring parts, materials and substances correctly, and entering them into the system.' },
+              { icon: FileCheck, title: 'Data validation', desc: 'Checking material and substance data for completeness and consistency before you submit.' },
+              { icon: Send, title: 'Submission', desc: 'Submitting completed data to your customer through the platform.' },
+              { icon: ClipboardList, title: 'Customer approval follow-up', desc: 'Tracking the review, answering questions and supplying extra information when requested.' },
+              { icon: RefreshCw, title: 'Rejection analysis & correction', desc: 'Finding why a submission was rejected, correcting the data and resubmitting.' },
+            ].map((item) => (
+              <div key={item.title} className="group flex items-start gap-4 p-6 rounded-xl bg-white border border-gray-100 hover:border-[#1A6B3C]/30 hover:shadow-md transition-all">
+                <div className="w-11 h-11 rounded-lg bg-[#1A6B3C]/10 flex items-center justify-center shrink-0 group-hover:bg-[#1A6B3C] transition-colors">
+                  <item.icon className="w-5 h-5 text-[#1A6B3C] group-hover:text-white transition-colors" aria-hidden="true" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1.5">{item.title}</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#1A6B3C] text-white text-sm font-semibold rounded-md hover:bg-[#155a32] transition-colors"
+            >
+              Ask about CAMDS support
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+            <p className="text-sm text-gray-500">Requirements and access rules are set by your customer and the platform operator.</p>
+          </div>
         </div>
       </section>
 

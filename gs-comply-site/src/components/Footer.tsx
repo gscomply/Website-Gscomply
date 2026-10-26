@@ -18,8 +18,8 @@ const servicesGroup: FooterGroup = {
   title: 'Services',
   links: [
     { label: 'Product & Material Compliance', path: '/product-material-compliance' },
-    { label: 'SCIP Notification Services', path: '/scip-notification-services' },
     { label: 'IMDS & CDX Services', path: '/imds-cdx' },
+    { label: 'SCIP Notification Services', path: '/scip-notification-services' },
     { label: 'Training Services', path: '/training-services' },
   ],
 };

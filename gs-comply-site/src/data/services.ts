@@ -1,6 +1,6 @@
 import {
   PackageCheck, Layers, ScrollText, Database, Truck, Recycle, Footprints,
-  Globe2, FileBarChart, Network, ShieldCheck, GraduationCap, type LucideIcon,
+  Globe2, FileBarChart, Network, ShieldCheck, GraduationCap, TrendingDown, Battery, type LucideIcon,
 } from 'lucide-react';
 
 // ============================================================
@@ -21,6 +21,8 @@ export interface Service {
   icon: LucideIcon;
   title: string;
   who: string;
+  /** Longer explanation, shown on the service's own page where it has one (e.g. /sustainability) */
+  about?: string;
   deliverables: string[];
   /** Menu entries that link to this card. Defaults to [title]. */
   navLabels?: string[];
@@ -97,7 +99,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: 'sustainability-services',
     path: '/sustainability',
     title: 'Sustainability Services',
-    description: 'LCA, PCF, CBAM, CSRD, ESG reporting',
+    description: 'LCA, PCF, carbon accounting, CBAM, CSRD, ESG',
     intro: 'Collect, structure and report the environmental and ESG data your customers and regulators ask for.',
     allLabel: 'All Sustainability Services',
     services: [
@@ -106,6 +108,7 @@ export const serviceCategories: ServiceCategory[] = [
         icon: Recycle,
         title: 'Life Cycle Assessment (LCA)',
         who: 'For product and sustainability teams who need to quantify the environmental impact of a product across its life cycle.',
+        about: 'Life Cycle Assessment measures the environmental impact of a product from raw materials through manufacturing, transport, use and end of life. Customers, tenders and sustainability programs increasingly ask for it. We handle the data-heavy part: defining the goal and scope, collecting inventory data on materials, energy, transport and waste, and structuring the results into a report you can share. The approach follows the principles of ISO 14040 and ISO 14044.',
         deliverables: [
           'Goal and scope definition',
           'Life cycle inventory data collection',
@@ -113,13 +116,14 @@ export const serviceCategories: ServiceCategory[] = [
           'LCA report for customers or internal use',
         ],
         navLabels: ['LCA (Life Cycle Assessment)'],
-        path: '/sustainability',
+        path: '/sustainability#lca',
       },
       {
         id: 'pcf',
         icon: Footprints,
         title: 'Product Carbon Footprint (PCF)',
         who: 'For suppliers who are asked by customers to report the carbon footprint of the products they supply.',
+        about: 'A Product Carbon Footprint states the greenhouse-gas emissions linked to one product, usually in kg CO2e per unit. OEMs and large buyers now request PCF values from their suppliers. We collect the emission data and its sources, calculate the footprint, show which stages contribute most (hotspots), and prepare a customer-ready report. Calculations follow recognised methods such as ISO 14067 and the GHG Protocol, depending on what your customer asks for.',
         deliverables: [
           'Product carbon footprint calculation',
           'Emission data and source documentation',
@@ -127,13 +131,29 @@ export const serviceCategories: ServiceCategory[] = [
           'Customer-ready PCF report',
         ],
         navLabels: ['PCF (Product Carbon Footprint)'],
-        path: '/sustainability',
+        path: '/sustainability#pcf',
+      },
+      {
+        id: 'carbon-accounting',
+        icon: TrendingDown,
+        title: 'Carbon Accounting',
+        who: 'For sustainability and finance teams who need organisation-level emissions data for reporting and customer requests.',
+        about: 'Carbon accounting turns activity data (energy, fuel, travel, purchased goods and more) into emissions figures across Scope 1 (direct), Scope 2 (purchased energy) and Scope 3 (value chain). We set up the data collection from your sites and suppliers, check it for gaps and consistency, and summarise it in the format your reporting or customer request needs.',
+        deliverables: [
+          'Scope 1, 2 and 3 data collection templates',
+          'Supplier and site sustainability data collection',
+          'Carbon accounting data summaries',
+          'Data gap analysis and follow-up',
+        ],
+        navLabels: ['Carbon Accounting'],
+        path: '/sustainability#carbon-accounting',
       },
       {
         id: 'cbam',
         icon: Globe2,
         title: 'CBAM Support',
         who: 'For importers and suppliers of goods that fall under the EU Carbon Border Adjustment Mechanism.',
+        about: 'The EU Carbon Border Adjustment Mechanism puts a carbon cost on certain imported goods, such as steel, aluminium, cement, fertilisers, electricity and hydrogen. Importers need embedded-emissions data from the producers of those goods. We check whether your products are covered, collect the emissions data from suppliers, structure it for CBAM reporting, and keep the documentation organised.',
         deliverables: [
           'CBAM applicability check by product',
           'Embedded emissions data collection from suppliers',
@@ -141,13 +161,29 @@ export const serviceCategories: ServiceCategory[] = [
           'Reporting support and documentation',
         ],
         navLabels: ['CBAM Support'],
-        path: '/sustainability',
+        path: '/sustainability#cbam',
+      },
+      {
+        id: 'ppwr-battery',
+        icon: Battery,
+        title: 'PPWR & EU Battery Regulation Support',
+        who: 'For manufacturers and importers of packaging, batteries and products that contain them.',
+        about: 'The EU Packaging and Packaging Waste Regulation (PPWR) and the EU Battery Regulation add sustainability, labelling and documentation duties for packaging and batteries. We help you work out which requirements touch your products, collect the supporting data from suppliers, and prepare the documentation that shows you meet them.',
+        deliverables: [
+          'Applicability check by product and packaging',
+          'Supplier data and declaration collection',
+          'Documentation and evidence packages',
+          'Tracking of upcoming requirements',
+        ],
+        navLabels: ['PPWR & Battery Regulation'],
+        path: '/sustainability#ppwr-battery',
       },
       {
         id: 'csrd-esg',
         icon: FileBarChart,
         title: 'CSRD & ESG Reporting Support',
         who: 'For companies preparing sustainability disclosures and answering customer ESG questionnaires.',
+        about: 'The Corporate Sustainability Reporting Directive (CSRD) and customer ESG questionnaires create a steady stream of data requests, even for companies that are not themselves in scope, because their customers are. We collect and structure environmental, social and governance data, find the gaps, and prepare reporting-ready data packages and consistent answers to questionnaires.',
         deliverables: [
           'ESG and sustainability data collection',
           'Support for customer ESG questionnaires',
@@ -155,7 +191,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Reporting-ready data packages',
         ],
         navLabels: ['CSRD & ESG Reporting'],
-        path: '/sustainability',
+        path: '/sustainability#csrd-esg',
       },
     ],
   },
@@ -192,7 +228,7 @@ export const serviceCategories: ServiceCategory[] = [
           'Rejection analysis and correction',
         ],
         navLabels: ['CAMDS'],
-        path: '/imds-cdx',
+        path: '/imds-cdx#camds',
       },
       {
         id: 'scip',
