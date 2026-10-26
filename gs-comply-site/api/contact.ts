@@ -100,8 +100,12 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     return send(res, 400, { ok: false, code: 'BAD_REQUEST' });
   }
 
-  // Hidden "website" field: humans leave it empty, bots fill it. Pretend success and drop it.
-  if (str(body.website, 200)) return send(res, 200, { ok: true, saved: true, emailed: false });
+  // Hidden "hp_trap" field: humans leave it empty, bots fill it. Pretend success and drop it.
+  // (Named hp_trap, not "website", because browser autofill fills fields called "website" and real enquiries were lost.)
+  if (str(body.hp_trap, 200)) {
+    console.warn('[contact] Dropped a submission because the hidden anti-spam field was filled.');
+    return send(res, 200, { ok: true, saved: true, emailed: false });
+  }
 
   const data = {
     full_name: str(body.full_name, 200),

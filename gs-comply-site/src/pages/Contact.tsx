@@ -76,7 +76,7 @@ export default function Contact() {
       industry: form.industry || null,
       service_required: form.service_required || null,
       consent: form.consent,
-      website: honeypot,
+      hp_trap: honeypot,
     };
     const reset = () => {
       setStatus('success');
@@ -240,7 +240,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="p-7 lg:p-8 rounded-xl bg-white border border-gray-100">
                   <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-                    <label>Leave this field empty<input type="text" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} /></label>
+                    <label>Leave this field empty<input type="text" name="hp_trap" tabIndex={-1} autoComplete="off" data-lpignore="true" data-1p-ignore="true" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} /></label>
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-6">Enquiry Form</h3>
                   {status === 'error' && (
