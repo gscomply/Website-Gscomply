@@ -72,7 +72,7 @@ export const legal: LegalDetails = {
 
 // TODO: Replace placeholder credentials with real figures
 export const credentials = {
-  yearsExperience: '',
+  //yearsExperience: '',
   mdsSubmissions: '5,000+',
   industriesServed: '20+',
   regulationsCovered: '18+',
