@@ -98,7 +98,7 @@ const imdsSteps = [
 ];
 
 const credentialsItems = [
-  { icon: Award, label: 'Years of Experience', value: credentials.yearsExperience },
+  //{ icon: Award, label: 'Years of Experience', value: credentials.yearsExperience },
   { icon: Database, label: 'MDS Submissions Handled', value: credentials.mdsSubmissions },
   { icon: Briefcase, label: 'Industries Served', value: credentials.industriesServed },
   { icon: BookOpen, label: 'Regulations Covered', value: credentials.regulationsCovered },
