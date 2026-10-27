@@ -12,6 +12,7 @@
  *   VITE_SUPABASE_ANON_KEY       required   anon public key (or set SUPABASE_SERVICE_ROLE_KEY instead)
  *   RESEND_API_KEY               optional   without it, enquiries are still saved but no email is sent
  *   CONTACT_NOTIFICATION_EMAIL   optional   where notifications go (default: VITE_CONTACT_EMAIL, then info.gscomply@gmail.com)
+ *   CONTACT_AUTOREPLY            optional   set to "false" to stop the confirmation email that is sent to the visitor (default: on)
  *   CONTACT_FROM_EMAIL           optional   sender (RESEND_FROM_EMAIL also works), e.g. "GS Comply Website <enquiries@gscomply.com>" (needs a domain verified in Resend;
  *                                           the default onboarding@resend.dev can only deliver to the email address of your Resend account)
  */
@@ -83,6 +84,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
       RESEND_API_KEY: !!env('RESEND_API_KEY'),
       notificationFrom: env('CONTACT_FROM_EMAIL', 'RESEND_FROM_EMAIL') ? 'custom' : 'onboarding@resend.dev (only delivers to your Resend account email)',
       notificationTo: notifyTo().replace(/^(.).*(@.*)$/, '$1***$2'),
+      confirmationToVisitor: env('CONTACT_AUTOREPLY').toLowerCase() === 'false' ? 'off' : 'on',
       VITE_CALENDLY_URL: !!env('VITE_CALENDLY_URL'),
       note: 'Environment variable changes only apply after a new deployment.',
     });
@@ -189,5 +191,39 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     }
   }
 
-  return send(res, 200, { ok: true, saved: true, emailed });
+  // 3) Confirmation email to the person who submitted the form (best effort, can be switched off with CONTACT_AUTOREPLY=false).
+  // The text is fixed: only the visitor's own name is inserted (escaped), so the form cannot be used to send arbitrary content.
+  // Note: this only reaches the visitor when the sender is on a domain verified in Resend (the default onboarding@resend.dev cannot).
+  let confirmed = false;
+  if (resendKey && env('CONTACT_AUTOREPLY').toLowerCase() !== 'false') {
+    try {
+      const firstName = esc(data.full_name.split(/\s+/)[0] || 'there');
+      const html = `<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#374151">
+        <div style="background:#1A6B3C;padding:20px;border-radius:8px 8px 0 0"><h1 style="color:#fff;margin:0;font-size:20px">Thank you for contacting GS Comply Solutions</h1></div>
+        <div style="background:#f9fafb;padding:24px;border:1px solid #e5e7eb;border-radius:0 0 8px 8px;line-height:1.6">
+        <p style="margin:0 0 14px">Dear ${firstName},</p>
+        <p style="margin:0 0 14px">Thank you for your enquiry. We have received your request and our team will review your requirement and get back to you shortly.</p>
+        <p style="margin:0 0 14px">If you would like to add any details, simply reply to this email.</p>
+        <p style="margin:24px 0 0">Kind regards,<br><strong>GS Comply Solutions</strong><br><a href="https://gscomply.com" style="color:#1A6B3C">gscomply.com</a></p>
+        </div>
+        <p style="text-align:center;color:#9ca3af;font-size:12px;margin-top:16px">You are receiving this email because you submitted an enquiry on gscomply.com.</p></div>`;
+      const r = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from: notifyFrom(),
+          to: [data.email],
+          reply_to: notifyTo(),
+          subject: 'We have received your enquiry | GS Comply Solutions',
+          html,
+        }),
+      });
+      confirmed = r.ok;
+      if (!r.ok) console.error('[contact] Resend rejected the confirmation email', r.status, (await r.text()).slice(0, 500));
+    } catch (err) {
+      console.error('[contact] Resend unreachable (confirmation email)', err);
+    }
+  }
+
+  return send(res, 200, { ok: true, saved: true, emailed, confirmed });
 }
