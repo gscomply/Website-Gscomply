@@ -108,8 +108,8 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Global Product & Material Compliance Services | GS Comply Solutions"
-        description="GS Comply Solutions helps manufacturers navigate REACH, RoHS, PFAS, IMDS, SCIP and more. Expert product compliance consulting for global industries."
+        title="Product & Material Compliance Services | IMDS | GS Comply Solutions"
+        description="GS Comply Solutions helps manufacturers navigate REACH, RoHS, PFAS, IMDS & CDX, SCIP, POP, CMRT and more. Expert product compliance consulting for global industries."
         path="/"
       />
 
