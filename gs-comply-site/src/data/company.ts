@@ -140,12 +140,12 @@ export const testimonials = [
     role: 'Quality director',
     company: '',
   },
-  {
-    quote: '[Real testimonial quote.]',
-    author: '[Client Name]',
-    role: '[Job Title]',
-    company: '[Company / Industry]',
-  },
+ // {
+ //   quote: '[Real testimonial quote.]',
+   // author: '[Client Name]',
+   // role: '[Job Title]',
+   // company: '[Company / Industry]',
+  //},
 ];
 
 export const faqItems = [
