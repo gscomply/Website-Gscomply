@@ -225,22 +225,16 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2 shrink-0 lg:-mr-3 xl:-mr-6">
-            {/* 30-minute call booking (link set in src/data/company.ts > calendlyUrl) */}
+            {/* Single CTA: free call booking (link set in src/data/company.ts > calendlyUrl) */}
             <a
               href={company.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden xl:inline-flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg hover:bg-[#1A6B3C]/5 transition-colors whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 bg-[#1A6B3C] text-white text-[13px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
             >
-              <Calendar className="w-4 h-4" aria-hidden="true" />
-              Book a 30-min Call
+              <Calendar className="w-4 h-4 hidden sm:block" aria-hidden="true" />
+              Book a Free Call
             </a>
-            <Link
-              to="/contact"
-              className="hidden sm:inline-flex items-center px-4 py-2 bg-[#1A6B3C] text-white text-[13px] font-semibold rounded-lg hover:bg-[#155a32] transition-colors whitespace-nowrap"
-            >
-              Get a Free Consultation
-            </Link>
             <button
               type="button"
               onClick={() => setMobileOpen((v) => !v)}
@@ -331,17 +325,14 @@ export default function Header() {
               })}
             </ul>
 
-            <Link to="/contact" className="mt-6 block px-4 py-3.5 bg-[#1A6B3C] text-white text-base font-semibold rounded-lg text-center">
-              Get a Free Consultation
-            </Link>
             <a
               href={company.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 flex items-center justify-center gap-2 px-4 py-3.5 text-base font-semibold text-[#1A6B3C] border border-[#1A6B3C]/40 rounded-lg"
+              className="mt-6 flex items-center justify-center gap-2 px-4 py-3.5 bg-[#1A6B3C] text-white text-base font-semibold rounded-lg"
             >
               <Calendar className="w-5 h-5" aria-hidden="true" />
-              Book a 30-min Call
+              Book a Free Call
             </a>
           </nav>
         </div>
