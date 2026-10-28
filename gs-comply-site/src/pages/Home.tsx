@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
-  Calendar,
   PackageCheck,
   Layers,
   Leaf,
@@ -143,21 +142,14 @@ export default function Home() {
                 SCIP notifications and customer approvals.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#1A6B3C] text-sm font-semibold rounded-md hover:bg-gray-50 transition-colors shadow-lg"
-                >
-                  Discuss Your Requirement
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
                 <a
                   href={company.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-transparent text-white text-sm font-semibold rounded-md border border-white/30 hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-[#1A6B3C] text-sm font-semibold rounded-md hover:bg-gray-50 transition-colors shadow-lg"
                 >
-                  <Calendar className="w-4 h-4" />
-                  Book a 30-min Call
+                  Discuss Your Requirement
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -406,13 +398,15 @@ export default function Home() {
                 BOM review, material mapping, supplier data collection, MDS creation, validation,
                 submission, and rejection resolution.
               </p>
-              <Link
-                to="/contact"
+              <a
+                href={company.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-7 inline-flex items-center gap-2 px-6 py-3 bg-[#1A6B3C] text-white text-sm font-semibold rounded-md hover:bg-[#155a32] transition-colors"
               >
-                Talk to an IMDS Specialist
+                Discuss Your Requirement
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
             </div>
             <div className="flex justify-center">
               <img

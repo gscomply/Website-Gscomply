@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { company } from '@/data/company';
 import {
   ArrowRight,
   UserPlus,
@@ -78,13 +78,15 @@ export default function ImdsCdx() {
                 supplier data collection, MDS creation, validation, submission and customer
                 approval — we handle every step of the process.
               </p>
-              <Link
-                to="/contact"
+              <a
+                href={company.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-7 inline-flex items-center gap-2 px-6 py-3 bg-[#1A6B3C] text-white text-sm font-semibold rounded-md hover:bg-[#155a32] transition-colors"
               >
-                Talk to an IMDS Specialist
+                Discuss Your Requirement
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
             </div>
             <div className="relative">
               <img loading="lazy" decoding="async"
@@ -210,13 +212,15 @@ export default function ImdsCdx() {
           </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Link
-              to="/contact"
+            <a
+              href={company.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#1A6B3C] text-white text-sm font-semibold rounded-md hover:bg-[#155a32] transition-colors"
             >
-              Ask about CAMDS support
+              Discuss Your Requirement
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
+            </a>
             <p className="text-sm text-gray-500">Requirements and access rules are set by your customer and the platform operator.</p>
           </div>
         </div>

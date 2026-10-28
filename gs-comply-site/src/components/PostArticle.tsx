@@ -175,20 +175,14 @@ export default function PostArticle({
                   Tell us what you are working on and we will come back with a clear plan, scope and timeline.
                 </p>
                 <div className="mt-5 flex flex-col sm:flex-row gap-3">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1A6B3C] text-white text-sm font-semibold rounded-md hover:bg-[#155a32] transition-colors"
-                  >
-                    Discuss your requirement
-                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                  </Link>
                   <a
                     href={company.calendlyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 text-[#1A6B3C] text-sm font-semibold border border-[#1A6B3C]/30 rounded-md hover:bg-white transition-colors"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1A6B3C] text-white text-sm font-semibold rounded-md hover:bg-[#155a32] transition-colors"
                   >
-                    Book a 30-min call
+                    Discuss Your Requirement
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </a>
                 </div>
               </aside>

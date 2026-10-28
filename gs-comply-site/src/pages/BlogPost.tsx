@@ -128,12 +128,14 @@ export default function BlogPost() {
                 <ArrowLeft className="w-4 h-4" aria-hidden="true" />
                 Browse all articles
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href={company.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 text-white text-sm font-semibold border border-white/40 rounded-md hover:bg-white/10 transition-colors"
               >
-                Contact us
-              </Link>
+                Discuss Your Requirement
+              </a>
             </div>
           </div>
         </div>
