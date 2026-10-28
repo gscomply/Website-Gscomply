@@ -105,8 +105,9 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl lg:text-4xl font-bold text-white">{credentials.yearsExperience}</div>
+               {/* <div className="text-3xl lg:text-4xl font-bold text-white">{credentials.yearsExperience}</div>
               <div className="text-xs text-white/70 mt-1">Years of Experience</div>
+              */}
             </div>
             <div>
               <div className="text-3xl lg:text-4xl font-bold text-white">{credentials.mdsSubmissions}</div>
@@ -185,7 +186,7 @@ export default function About() {
 */}
 
       {/* Case Studies */}
-      {/* TODO: Replace anonymised case studies with real examples in src/data/company.ts 
+      {/* TODO: Replace anonymised case studies with real examples in src/data/company.ts */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -223,9 +224,9 @@ export default function About() {
           </div>
         </div>
       </section>
-*/}
+
       {/* Testimonials */}
-      {/* TODO: Replace placeholder testimonials with real quotes in src/data/company.ts
+      {/* TODO: Replace placeholder testimonials with real quotes in src/data/company.ts */}
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
@@ -250,7 +251,7 @@ export default function About() {
           </div>
         </div>
       </section>
-*/}
+
       {/* Teams We Work With */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
