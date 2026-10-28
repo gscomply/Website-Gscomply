@@ -4,8 +4,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App.tsx';
 import './index.css';
 import { initConsent } from './lib/consent';
+import { registerWebMcpTools } from './lib/webmcp';
 
 initConsent();
+registerWebMcpTools();
 
 const app = (
   <StrictMode>
